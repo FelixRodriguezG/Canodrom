@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: [ "class" ],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -16,7 +16,18 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: [ 'Graphik', 'sans-serif' ],
+      serif: [ 'Merriweather', 'serif' ],
+    },
     extend: {
+      spacing: {
+        '8xl': '96rem',
+        '9xl': '128rem',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -33,5 +44,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [ require("tailwindcss-animate") ],
 }

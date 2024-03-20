@@ -9,18 +9,21 @@ import { FindManyOptions, Repository } from 'typeorm';
 @Injectable()
 export class UserService {
   constructor(
-
-  @InjectRepository(User) private userRepository: Repository<User>,
+  @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
-  async create(user: CreateUserDto) {
-    return this.userRepository.save(this.userRepository.create(user));
+  async create(createUserDto: CreateUserDto) {
+    return this.userRepository.save(createUserDto);
   }
 
-  findAll(limit: string) {
-    let options: FindManyOptions<User>;
-    if (limit) options = { take: +limit };
-    return this.userRepository.find(options);
+  // findAll(limit: string) {
+  //   let options: FindManyOptions<User>;
+  //   if (limit) options = { take: +limit };
+  //   return this.userRepository.find(options);
+  // }
+  findOneByEmail(email:string){
+    return this.userRepository.findOneBy({email})
   }
-
-
+  saludo(){
+    return "hola"
+  }
 }

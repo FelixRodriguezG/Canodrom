@@ -8,10 +8,12 @@ import {
   export class User {
     @PrimaryGeneratedColumn()
     id: number;
-    @Column()
+    @Column({nullable:false})
     userName: string;
-    @Column()
+    @Column({unique:true, nullable:false})
+    email:string
+    @Column({nullable:false})
     password: string;
-    @Column()
+    @Column({default:"user"})
     role: string;
   }

@@ -6,12 +6,12 @@ function Dashboard() {
   return (
     <div>
       <div>
-        <CardData></CardData>
+        <CardData/>
         <CollumsGraph/>
         <CakeGraph />
         </div>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`comprobar renderizado de rutas 1`] = `
+<React.Fragment>
+  <header
+    className="bg-purple-700 p-5 flex w-full items-center justify-between"
+  >
+    <img
+      alt="logo"
+      src="./Icon.svg"
+    />
+    <SearchBar
+      searchDisplay="hidden"
+    />
+    <div>
+      <p
+        className="text-white text-2xl hidden"
+      >
+        Administrador
+      </p>
+      <a
+        className="text-white  hidden"
+        href=""
+      >
+        Tancar sessiò
+      </a>
+    </div>
+  </header>
+</React.Fragment>
+`;
+
+exports[`comprobar renderizado de rutas 2`] = `
+<React.Fragment>
+  <header
+    className="bg-purple-700 p-5 flex w-full items-center justify-between"
+  >
+    <img
+      alt="logo"
+      src="./Icon.svg"
+    />
+    <SearchBar
+      searchDisplay="block"
+    />
+    <div>
+      <p
+        className="text-white text-2xl block"
+      >
+        Administrador
+      </p>
+      <a
+        className="text-white  block"
+        href=""
+      >
+        Tancar sessiò
+      </a>
+    </div>
+  </header>
+</React.Fragment>
+`;
+
+exports[`comprobar renderizado de rutas 3`] = `
+<React.Fragment>
+  <header
+    className="bg-purple-700 p-5 flex w-full items-center justify-between"
+  >
+    <img
+      alt="logo"
+      src="./Icon.svg"
+    />
+    <SearchBar
+      searchDisplay="valor-predeterminado"
+    />
+    <div>
+      <p
+        className="text-white text-2xl valor-predeterminado"
+      >
+        Administrador
+      </p>
+      <a
+        className="text-white  valor-predeterminado"
+        href=""
+      >
+        Tancar sessiò
+      </a>
+    </div>
+  </header>
+</React.Fragment>
+`;

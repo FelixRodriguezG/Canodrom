@@ -1,13 +1,15 @@
-import CardData from "./components/CardData"
+import CardData from "./components/CardData";
+import CollumsGraph from "./components/CollumsGraph";
 
 function Dashboard() {
   return (
     <div>
       <div>
         <CardData></CardData>
-        </div>
+        <CollumsGraph />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

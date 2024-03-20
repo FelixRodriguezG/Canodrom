@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 function Header({ headerDisplay }) {
   return (
     <>
-      <header className="bg-purple-700 p-5 flex w-full items-center justify-between">
+      <header className="bg-purple-700 p-5 flex w-full items-center justify-between position: fixed">
         <img src="./Icon.svg" alt="logo" />
         <SearchBar searchDisplay={headerDisplay} />
         <div>

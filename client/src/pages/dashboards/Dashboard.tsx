@@ -8,6 +8,8 @@ function Dashboard() {
     <div>
       <div>
         <CardData></CardData>
+        <CollumsGraph></CollumsGraph>
+        <ListComponent></ListComponent>
         </div>
     </div>
   );

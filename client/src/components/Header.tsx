@@ -5,7 +5,7 @@ function Header({ headerDisplay }) {
   return (
     <>
       <header className="bg-purple-700 p-5 flex w-full items-center justify-between position: fixed">
-        <img src="./Icon.svg" alt="logo" />
+        <img src="./Icon.svg" alt="logo" className='w-[240px]' />
         <SearchBar searchDisplay={headerDisplay} />
         <div>
           <p className={`text-white text-2xl ${headerDisplay}`}>Administrador</p>

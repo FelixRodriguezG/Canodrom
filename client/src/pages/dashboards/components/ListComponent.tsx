@@ -35,7 +35,7 @@ useEffect(() => {
   })
 }, [])
   return (
-    <Card>
+    <Card className=" ">
 <Table>
   <TableCaption>Feu clic en una activitat per veure les seves dades.</TableCaption>
   <TableHeader>

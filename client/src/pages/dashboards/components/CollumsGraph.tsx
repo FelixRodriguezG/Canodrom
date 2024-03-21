@@ -41,7 +41,6 @@ const CollumsGraph = () => {
       },
     ],
   };
-
   return (
     <section className="flex justify-b w-[500px] h-[400px] pt-36 ">
       <Card className="flex justify-center h-[285px] w-[1100px] max-w-4xl">

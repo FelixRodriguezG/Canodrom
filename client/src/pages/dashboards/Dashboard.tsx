@@ -1,6 +1,8 @@
 import { ListComponent } from "./components/ListComponent"
 import CardData from "./components/CardData";
 import CollumsGraph from "./components/CollumsGraph";
+import CakeChart from "./components/CakeGraph";
+
 
 
 function Dashboard() {
@@ -10,6 +12,7 @@ function Dashboard() {
         <CardData></CardData>
         <CollumsGraph></CollumsGraph>
         <ListComponent></ListComponent>
+        <CakeChart></CakeChart>
         </div>
     </div>
   );

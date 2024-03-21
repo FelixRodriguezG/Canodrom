@@ -17,7 +17,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "echarts": "^5.5.0",
+<<<<<<< HEAD
     "echarts-for-react": "^3.0.2",
+=======
+>>>>>>> f15dc17c666ac6a73acec17174b39185f64653a4
     "lucide-react": "^0.359.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

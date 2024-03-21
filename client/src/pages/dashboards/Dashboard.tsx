@@ -7,19 +7,19 @@ import CakeChart from "./components/CakeGraph";
 
 function Dashboard() {
   return (
-    <div className="flex flex-col">
-      <div className="flex justify-around items-center ">
+    <main className="flex flex-col  min-h-[1080px] gap-7 ">
+      <div className="flex justify-between items-center max-2xl:flex-col gap-3 mx-7">
         <CardData />
-        <div className="pt-16">
+        <div className="">
         <CollumsGraph />
         </div>
 
       </div>
-      <div className="flex justify-between items-">
+      <div className="flex justify-between max-2xl:flex-col gap-3 max-2xl:items-center mx-7">
         <ListComponent />                   
         <CakeChart />
       </div>
-    </div>
+    </main>
   );
 }
 export default Dashboard

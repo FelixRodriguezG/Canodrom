@@ -54,10 +54,10 @@ function CardData() {
   }, []);
 
   return (
-    <div className="w-[800px] max-w-[800px]  grid grid-cols-2 gap-8 pt-36 mb-8">
+    <div className="w-[800px] max-w-[800px]  grid grid-cols-2 gap-8 pt-8 mb-8 ">
       {cardData.map((card) => (
         <div key={card.id}>
-          <Card className="h-[150px] max-w-[500px]  rounded-none shadow-lg">
+          <Card className="h-[150px] max-w-[500px]  shadow-lg ">
             <CardHeader>
               <CardTitle className="font-bold  text-xl">{card.title}</CardTitle>
             </CardHeader>

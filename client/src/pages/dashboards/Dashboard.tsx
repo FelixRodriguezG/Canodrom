@@ -1,5 +1,6 @@
 import { ListComponent } from "./components/ListComponent"
-import CardData from "./components/CardData"
+import CardData from "./components/CardData";
+import CollumsGraph from "./components/CollumsGraph";
 
 
 function Dashboard() {
@@ -7,10 +8,9 @@ function Dashboard() {
     <div>
       <div>
         <CardData></CardData>
-        <ListComponent></ListComponent>
         </div>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

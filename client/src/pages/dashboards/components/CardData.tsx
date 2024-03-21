@@ -8,12 +8,11 @@ interface CardItem {
 }
 
 function CardData() {
-  const [data, setData] = useState<any>(null);
+  const [, setData] = useState<any>(null);
   const [cardData, setCardData] = useState<CardItem[]>([]);
 
   useEffect(() => {
-    // Realizar la solicitud a la base de datos utilizando fetch
-    fetch("http://localhost:3000/events/?limit=1")
+    fetch("http://localhost:3000/events/?limit=2")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Ocurrió un error al realizar la solicitud.");
@@ -23,31 +22,31 @@ function CardData() {
       .then((data) => {
         setData(data);
         console.log("Success:", data);
-        // Asignar los datos a la constante cardData
+        
         setCardData([
           {
             id: 1,
             title: data[0].title,
 
-            value: "50",
+            value: data[0].attendees,
           },
           {
             id: 2,
             title: "Temàtica",
-            value: "Tecnologies Obertes",
+            value: data[0].theme,
           },
           {
             id: 3,
             title: "Programa",
-            value: "Creixent entre pantalles",
+            value: data[0].program,
           },
           {
             id: 4,
             title: "Tipus d'activitat",
-            value: "Trobada",
+            value: data[0].type ,
           },
         ]);
-        console.log("Success:", data);
+        
       })
       .catch((error) => {
         console.error("Error:", error);

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { FindManyOptions, Repository } from 'typeorm';
@@ -8,6 +7,9 @@ import { FindManyOptions, Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
+  static findAll() {
+    throw new Error('Method not implemented.');
+  }
   constructor(
 
   @InjectRepository(User) private userRepository: Repository<User>,

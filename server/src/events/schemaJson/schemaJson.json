@@ -1,7 +1,7 @@
  {
     "title": "string",
-    "startDate": "string",
-    "endDate": "string",
+    "startDate": "2021-03-21",
+    "endDate": "2021-03-21",
     "program": "string",
     "repetition": 1,
     "attendees": 50,
@@ -10,6 +10,3 @@
     "targetAudience": "string",
     "Organizer": "string"
 }
-
-// para hacer una busqueda compleja con simbolos y espacios
-// localhost:3000/events/find/%27Borrachito%20y%20sucio%27:%20Las%20memorias%20de%20Isiah

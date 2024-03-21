@@ -57,7 +57,7 @@ useEffect(() => {
           <TableCell>{art.endDate}</TableCell>
           <TableCell>{art.repetition}</TableCell>
           <TableCell>{art.targetAudience}</TableCell>
-          <TableCell>{art.Organizer}</TableCell>
+          <TableCell className="text-right">{art.Organizer}</TableCell>
         </TableRow>
       )
     })}

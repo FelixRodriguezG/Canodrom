@@ -12,7 +12,6 @@ function CardData() {
   const [cardData, setCardData] = useState<CardItem[]>([]);
 
   useEffect(() => {
-    // Realizar la solicitud a la base de datos utilizando fetch
     fetch("http://localhost:3000/events/?limit=2")
       .then((response) => {
         if (!response.ok) {

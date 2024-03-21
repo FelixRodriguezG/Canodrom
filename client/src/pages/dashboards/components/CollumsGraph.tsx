@@ -5,14 +5,14 @@ const CollumsGraph = () => {
   const option = {
     xAxis: {
       type: "category",
-      data: ["Instagram", "Telegram", "Twitter", "Cartelleria", "Mastodont"],
+      data: ["IG", "Tel", "X", "Cart", "Mast", "New Canòd", "Web Canòd", "Cartel","Altres" ],
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [60, 30, 25, 15, 12],
+        data: [60, 30, 25, 15, 12,23,45,12,23],
         type: "bar",
         color: "rgba(255, 177, 193, 1)",
         showBackground: true,

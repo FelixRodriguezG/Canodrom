@@ -8,7 +8,7 @@ import CakeChart from "./components/CakeGraph";
 function Dashboard() {
   return (
     <div>
-      <div>
+      <div  className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <CardData></CardData>
         <CollumsGraph></CollumsGraph>
         <ListComponent></ListComponent>

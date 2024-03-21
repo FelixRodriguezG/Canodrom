@@ -1,7 +1,10 @@
+import CakeChart from "@/components/CakeChart"
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>Dashboard
+      <CakeChart />
+    </div>
   )
 }
 

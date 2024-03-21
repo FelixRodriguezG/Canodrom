@@ -42,15 +42,16 @@ const CollumsGraph = () => {
     ],
   };
   return (
-    <section className="flex justify-b w-[500px] h-[400px] pt-36 ">
-      <Card className="flex justify-center h-[285px] w-[1100px] max-w-4xl">
+   
+      <Card className="flex justify-center mt-8 h-[330px] w-[1100px] max-w-4xl">
         <CardTitle>
-          <CardContent className="w-[1100px]">
+          <h1 className="text-3xl text-center">Com ens vas trobar</h1>
+          <CardContent className="h-[350px] w-[1100px]">
             <ReactECharts option={option} />
           </CardContent>
         </CardTitle>
       </Card>
-    </section>
+    
   );
 };
 

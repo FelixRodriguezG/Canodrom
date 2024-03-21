@@ -7,11 +7,18 @@ import CakeChart from "./components/CakeGraph";
 
 function Dashboard() {
   return (
-    <div>
+    <div className="flex flex-col">
+      <div className="flex justify-around items-center ">
         <CardData />
+        <div className="pt-16">
         <CollumsGraph />
-        <CakeChart />
+        </div>
+
+      </div>
+      <div className="flex justify-between items-">
         <ListComponent />                   
+        <CakeChart />
+      </div>
     </div>
   );
 }

@@ -1,9 +1,19 @@
-import React from 'react'
+import React from 'react';
+import SearchBar from './SearchBar';
 
-function Header() {
+function Header({ headerDisplay }) {
   return (
-    <div>Header</div>
-  )
+    <>
+      <header className="bg-purple-700 p-5 flex w-full items-center justify-between position: fixed">
+        <img src="./Icon.svg" alt="logo" />
+        <SearchBar searchDisplay={headerDisplay} />
+        <div>
+          <p className={`text-white text-2xl ${headerDisplay}`}>Administrador</p>
+          <a href="" className={`text-white  ${headerDisplay}`}>Tancar sessiò</a>
+        </div>
+      </header>
+    </>
+  );
 }
 
-export default Header
+export default Header;

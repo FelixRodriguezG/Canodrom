@@ -1,7 +1,12 @@
+import CardData from "./components/CardData"
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>
+      <div>
+        <CardData></CardData>
+        </div>
+    </div>
   )
 }
 

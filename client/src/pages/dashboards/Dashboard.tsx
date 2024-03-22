@@ -7,7 +7,7 @@ import CakeChart from "./components/CakeGraph";
 
 function Dashboard() {
   return (
-    <main className="flex flex-col  min-h-[1080px] gap-7 ">
+    <main className="flex flex-col  min-h-[1080px] ">
       <div className="flex justify-between items-center max-2xl:flex-col gap-3 mx-7">
         <CardData />
         <div className="">
@@ -15,7 +15,7 @@ function Dashboard() {
         </div>
 
       </div>
-      <div className="flex justify-between max-2xl:flex-col gap-3 max-2xl:items-center mx-7">
+      <div className="flex justify-between max-2xl:flex-col gap-2 max-2xl:items-center mx-7 ">
         <ListComponent />                   
         <CakeChart />
       </div>

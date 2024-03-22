@@ -77,7 +77,7 @@ const CakeChart = () => {
   return (
     <div
       ref={chartRef}
-      className=" h-[500px] w-full max-w-md "
+      className=" h-[500px] w-full max-w-md rounded-md border border-gray-300 "
     />
   );
 };

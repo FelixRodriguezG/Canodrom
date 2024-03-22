@@ -33,7 +33,7 @@ export const ListComponent = () => {
       });
   }, []);
   return (
-    <Card className="h-[700px] w-full max-w-7xl">
+    <Card className=" w-full max-w-7xl">
       <Table>
         <TableCaption>
           Feu clic en una activitat per veure les seves dades.

@@ -16,7 +16,7 @@ export class CreateEventsDto {
     heardThroughTwitter?: number;
     heardThroughFacebook?: number;
     heardThroughInstagram?: number;
-    heardThroughTelegram?: number;
+    heardThroughOther?: number;
     heardThroughMastodon?: number;
     heardThroughNewsletter?: number;
     heardThroughWeb?: number;

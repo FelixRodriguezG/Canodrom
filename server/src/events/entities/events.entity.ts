@@ -43,8 +43,6 @@ export class Events {
   @Column()
   heardThroughInstagram: number;
   @Column()
-  heardThroughTelegram: number;
-  @Column()
   heardThroughMastodon: number;
   @Column()
   heardThroughNewsletter: number;
@@ -52,4 +50,6 @@ export class Events {
   heardThroughWeb: number;
   @Column()
   heardThroughSigns: number;
+  @Column()
+  heardThroughOther: number;
 }

@@ -2,8 +2,34 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 
+interface EventData {
+  title: string;
+  startDate: Date;
+  endDate: Date;
+  program: string;
+  repetition: number;
+  attendees: number;
+  theme: string;
+  type: string;
+  targetAudience: string;
+  Organizer: string;
+  femaleAttendees?: number;
+  maleAttendees?: number;
+  nonBinaryAttendees?: number;
+  undisclosedAttendees?: number;
+  heardThroughTwitter?: number;
+  heardThroughFacebook?: number;
+  heardThroughInstagram?: number;
+  heardThroughMastodon?: number;
+  heardThroughNewsletter?: number;
+  heardThroughWeb?: number;
+  heardThroughSigns?: number;
+  heardThroughOther?: number;
+}
+
 const CollumsGraph = () => {
-  const [data, setData] = useState([]);
+  const [data, setDataB] = useState<EventData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/events/?limit=2")
@@ -13,25 +39,51 @@ const CollumsGraph = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        setData(data);
+      .then((datas) => {
+        setDataB(datas);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const option = {
     xAxis: {
       type: "category",
-      data: ["IG", "Tel", "X", "Cart", "Mast", "New Canòd", "Web Canòd", "Cartel", "Altres"],
+      data: [
+        "Twitter",
+        "Facebook",
+        "Instagram",
+        "Mastodon",
+        "Newsletter",
+        "Web",
+        "Signs",
+        "Other",
+      ],
+      axisLabel: {
+        interval: 0, 
+      },
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [60, 30, 25, 15, 12, 23, 45, 12, 23],
+        data: [
+          data[0]?.heardThroughTwitter,
+          data[0]?.heardThroughFacebook,
+          data[0]?.heardThroughInstagram,
+          data[0]?.heardThroughMastodon,
+          data[0]?.heardThroughNewsletter,
+          data[0]?.heardThroughWeb,
+          data[0]?.heardThroughSigns,
+          data[0]?.heardThroughOther,
+        ],
         type: "bar",
         color: "rgba(255, 177, 193, 1)",
         showBackground: true,
@@ -42,16 +94,14 @@ const CollumsGraph = () => {
     ],
   };
   return (
-   
-      <Card className="flex justify-center  h-[330px] w-[100vh] max-w-4xl rounded-md border border-gray-300">
-        <CardTitle>
-          <h1 className="text-3xl text-center ">Com ens vas trobar</h1>
-          <CardContent className="h-[350px] w-[90vh]">
-            <ReactECharts option={option} />
-          </CardContent>
-        </CardTitle>
-      </Card>
-    
+    <Card className="flex justify-center  h-[330px] w-[100vh] max-w-4xl rounded-md shadow-lg border border-gray-300">
+      <CardTitle className="text-3xl text-center ">
+        Com ens vas trobar?
+        <CardContent className="h-[350px] w-[90vh]">
+          <ReactECharts option={option} />
+        </CardContent>
+      </CardTitle>
+    </Card>
   );
 };
 

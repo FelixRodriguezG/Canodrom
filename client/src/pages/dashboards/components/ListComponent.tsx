@@ -1,4 +1,4 @@
-// import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -9,31 +9,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState, useEffect } from "react";
-
-interface Activities {
-  title: string;
-  startDate: string;
-  endDate: string;
-  repetition: number;
-  targetAudience: string;
-  Organizer: string;
-}
+import{fetchActivities,Activity} from "./Api"
 
 export const ListComponent = () => {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/events")
-      .then((response) => {
-        return response.json();
-      })
-      .then((activities) => {
-        setActivities(activities);
-      });
+    const fetchData = async () => {
+      const data = await fetchActivities();
+      setActivities(data);
+    };
+
+    fetchData();
   }, []);
+
   return (
-    <Card className=" w-full max-w-7xl rounded-md border border-gray-300 mt-2">
+    <Card className="w-full max-w-7xl rounded-md border border-gray-300 mt-2">
       <Table>
         <TableCaption>
           Feu clic en una activitat per veure les seves dades.
@@ -49,28 +40,21 @@ export const ListComponent = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {activities.map((art: Activities, index: number) => {
+          {activities.map((activity: Activity, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell>{art.title}</TableCell>
-                <TableCell>{art.startDate}</TableCell>
-                <TableCell>{art.endDate}</TableCell>
-                <TableCell>{art.repetition}</TableCell>
-                <TableCell>{art.targetAudience}</TableCell>
-                <TableCell className="text-right">{art.Organizer}</TableCell>
+                <TableCell>{activity.title}</TableCell>
+                <TableCell>{activity.startDate}</TableCell>
+                <TableCell>{activity.endDate}</TableCell>
+                <TableCell>{activity.repetition}</TableCell>
+                <TableCell>{activity.targetAudience}</TableCell>
+                <TableCell className="text-right">{activity.Organizer}</TableCell>
               </TableRow>
             );
           })}
-          {/* <TableRow>
-      <TableCell className="font-medium">'Borrachito y sucio': Les memòries de l'Isiah</TableCell>
-      <TableCell>2024-03-10</TableCell>
-      <TableCell>2024-03-25</TableCell>
-      <TableCell>3</TableCell>
-      <TableCell>Borratxos</TableCell>
-      <TableCell className="text-right">Kentucky Entertainment</TableCell>
-    </TableRow> */}
         </TableBody>
       </Table>
     </Card>
   );
 };
+

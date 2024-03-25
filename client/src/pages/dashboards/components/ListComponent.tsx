@@ -61,14 +61,6 @@ useEffect(() => {
         </TableRow>
       )
     })}
-    {/* <TableRow>
-      <TableCell className="font-medium">'Borrachito y sucio': Les memòries de l'Isiah</TableCell>
-      <TableCell>2024-03-10</TableCell>
-      <TableCell>2024-03-25</TableCell>
-      <TableCell>3</TableCell>
-      <TableCell>Borratxos</TableCell>
-      <TableCell className="text-right">Kentucky Entertainment</TableCell>
-    </TableRow> */}
   </TableBody>
 </Table>
     </Card>

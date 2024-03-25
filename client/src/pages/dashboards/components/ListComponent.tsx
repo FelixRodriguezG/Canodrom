@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -19,11 +19,9 @@ interface ListComponentProps {
   onActivitySelected: (activity: Activity) => void;
 }
 
-export const ListComponent = ({onActivitySelected}:ListComponentProps) => {
+export const ListComponent = ({ onActivitySelected }: ListComponentProps) => {
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [_dataSelect, setDataSelect] = useState<Activity | null>(
-    null
-  );
+  const [_dataSelect, setDataSelect] = useState<Activity | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +39,7 @@ export const ListComponent = ({onActivitySelected}:ListComponentProps) => {
           Feu clic en una activitat per veure les seves dades.
         </TableCaption>
         <TableHeader>
-          <TableRow>
+          <TableRow className="cursor-pointer hover:bg-transparent">
             <TableHead>Títol</TableHead>
             <TableHead>Data inici</TableHead>
             <TableHead>Data fi</TableHead>
@@ -54,6 +52,7 @@ export const ListComponent = ({onActivitySelected}:ListComponentProps) => {
           {activities.map((activity: Activity, index: number) => {
             return (
               <TableRow
+                className="cursor-pointer hover:bg-[#46FCD6]"
                 key={index}
                 onClick={() => {
                   setDataSelect(activity);
@@ -73,7 +72,6 @@ export const ListComponent = ({onActivitySelected}:ListComponentProps) => {
           })}
         </TableBody>
       </Table>
-      
     </Card>
   );
 };

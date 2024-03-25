@@ -9,10 +9,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import{fetchActivities,Activity} from "./Api"
+import { fetchActivities, Activity } from "./Api";
+import CardData from "./CardData";
+
+interface CardDataProps {
+  data: Activity;
+}
 
 export const ListComponent = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,19 +50,24 @@ export const ListComponent = () => {
         <TableBody>
           {activities.map((activity: Activity, index: number) => {
             return (
-              <TableRow key={index}>
+              <TableRow
+                key={index}
+                onClick={() => setSelectedActivity(activity)}
+              >
                 <TableCell>{activity.title}</TableCell>
                 <TableCell>{activity.startDate}</TableCell>
                 <TableCell>{activity.endDate}</TableCell>
                 <TableCell>{activity.repetition}</TableCell>
                 <TableCell>{activity.targetAudience}</TableCell>
-                <TableCell className="text-right">{activity.Organizer}</TableCell>
+                <TableCell className="text-right">
+                  {activity.Organizer}
+                </TableCell>
               </TableRow>
             );
           })}
         </TableBody>
       </Table>
+      {selectedActivity && <CardData data={selectedActivity} />}
     </Card>
   );
 };
-

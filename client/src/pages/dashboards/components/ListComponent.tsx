@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -12,13 +12,16 @@ import {
 import { fetchActivities, Activity } from "./Api";
 import CardData from "./CardData";
 
-interface CardDataProps {
+export interface CardDataProps {
   data: Activity;
 }
+interface ListComponentProps {
+  onActivitySelected: (activity: Activity) => void;
+}
 
-export const ListComponent = () => {
+export const ListComponent = ({onActivitySelected}:ListComponentProps) => {
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
+  const [_dataSelect, setDataSelect] = useState<Activity | null>(
     null
   );
 
@@ -52,7 +55,10 @@ export const ListComponent = () => {
             return (
               <TableRow
                 key={index}
-                onClick={() => setSelectedActivity(activity)}
+                onClick={() => {
+                  setDataSelect(activity);
+                  onActivitySelected(activity);
+                }}
               >
                 <TableCell>{activity.title}</TableCell>
                 <TableCell>{activity.startDate}</TableCell>
@@ -67,7 +73,7 @@ export const ListComponent = () => {
           })}
         </TableBody>
       </Table>
-      {selectedActivity && <CardData data={selectedActivity} />}
+      
     </Card>
   );
 };

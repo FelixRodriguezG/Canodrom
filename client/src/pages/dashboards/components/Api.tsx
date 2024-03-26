@@ -1,7 +1,7 @@
-export class CreateEventsDto {
+export interface Activity {
     title: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     program: string;
     repetition: number;
     attendees: number;
@@ -16,9 +16,22 @@ export class CreateEventsDto {
     heardThroughTwitter?: number;
     heardThroughFacebook?: number;
     heardThroughInstagram?: number;
-    heardThroughOther?: number;
     heardThroughMastodon?: number;
     heardThroughNewsletter?: number;
     heardThroughWeb?: number;
     heardThroughSigns?: number;
-}
+    heardThroughOther?: number;
+  }
+export async function fetchActivities(): Promise<Activity[]> {
+    try {
+      const response = await fetch("http://localhost:3000/events");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return [];
+    }
+  }

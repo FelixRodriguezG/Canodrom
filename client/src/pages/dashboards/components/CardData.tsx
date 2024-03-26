@@ -8,12 +8,11 @@ interface CardItem {
 }
 
 function CardData() {
-  const [data, setData] = useState<any>(null);
+  const [, setData] = useState<any>(null);
   const [cardData, setCardData] = useState<CardItem[]>([]);
 
   useEffect(() => {
-    // Realizar la solicitud a la base de datos utilizando fetch
-    fetch("http://localhost:3000/events/?limit=1")
+    fetch("http://localhost:3000/events/?limit=2")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Ocurrió un error al realizar la solicitud.");
@@ -23,31 +22,31 @@ function CardData() {
       .then((data) => {
         setData(data);
         console.log("Success:", data);
-        // Asignar los datos a la constante cardData
+        
         setCardData([
           {
             id: 1,
             title: data[0].title,
-
-            value: "50",
+            
+            value: data[0].attendees,
           },
           {
             id: 2,
             title: "Temàtica",
-            value: "Tecnologies Obertes",
+            value: data[0].theme,
           },
           {
             id: 3,
             title: "Programa",
-            value: "Creixent entre pantalles",
+            value: data[0].program,
           },
           {
             id: 4,
             title: "Tipus d'activitat",
-            value: "Trobada",
+            value: data[0].type ,
           },
         ]);
-        console.log("Success:", data);
+        
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -55,12 +54,12 @@ function CardData() {
   }, []);
 
   return (
-    <div className="w-[500px] h-[400px] grid grid-cols-2 gap-6 pt-36 pl-9">
+    <div className="w-[800px] max-w-[800px]  grid grid-cols-2 gap-8 pt-8 mb-8 ">
       {cardData.map((card) => (
         <div key={card.id}>
-          <Card className="w-[100%] h-[100%] col-span-1 rounded-none shadow-lg">
+          <Card className="h-[150px] max-w-[500px] shadow-lg rounded-md border border-gray-300">
             <CardHeader>
-              <CardTitle className="font-bold  text-xl">{card.title}</CardTitle>
+              <CardTitle className="font-bold  text-xl ">{card.title}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="font-bold text-center text-xl">{card.value}</p>

@@ -5,10 +5,6 @@ import CakeChart from "./components/CakeGraph";
 import { Activity } from "./components/Api";
 import { useState } from "react";
 
- 
-
-
-
 const Dashboard = () => {
   const [selectedActivity1, setSelectedActivity] = useState<Activity | null>(null);
 

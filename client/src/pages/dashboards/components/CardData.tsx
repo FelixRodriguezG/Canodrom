@@ -1,57 +1,48 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
+import { Activity } from "./Api";
+
 
 interface CardItem {
   id: number;
   title: string;
-  value: string;
+  value: number | string;
 }
 
-function CardData() {
-  const [, setData] = useState<any>(null);
+interface CardDataProps {
+  data: Activity;
+}
+
+function CardData({ data }: CardDataProps) {
   const [cardData, setCardData] = useState<CardItem[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/events/?limit=2")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ocurrió un error al realizar la solicitud.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data);
-        console.log("Success:", data);
-        
-        setCardData([
-          {
-            id: 1,
-            title: data[0].title,
-            
-            value: data[0].attendees,
-          },
-          {
-            id: 2,
-            title: "Temàtica",
-            value: data[0].theme,
-          },
-          {
-            id: 3,
-            title: "Programa",
-            value: data[0].program,
-          },
-          {
-            id: 4,
-            title: "Tipus d'activitat",
-            value: data[0].type ,
-          },
-        ]);
-        
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
+    if (data){
+      console.log(data.title)
+    setCardData([
+      {
+        id: 1,
+        title: data.title,
+        value: data.attendees,
+      },
+      {
+        id: 2,
+        title: "Temàtica",
+        value: data.theme,
+      },
+      {
+        id: 3,
+        title: "Programa",
+        value: data.program,
+      },
+      {
+        id: 4,
+        title: "Tipus d'activitat",
+        value: data.type ,
+      },
+    ]);
+  }
+  }, [data]);
 
   return (
     <div className="w-[800px] max-w-[800px]  grid grid-cols-2 gap-8 pt-8 mb-8 ">

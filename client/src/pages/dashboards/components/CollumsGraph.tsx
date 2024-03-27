@@ -1,52 +1,56 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
+import { DataProps } from "./ListComponent";
 
 interface EventData {
-  title: string;
-  startDate: Date;
-  endDate: Date;
-  program: string;
-  repetition: number;
-  attendees: number;
-  theme: string;
-  type: string;
-  targetAudience: string;
-  Organizer: string;
-  femaleAttendees?: number;
-  maleAttendees?: number;
-  nonBinaryAttendees?: number;
-  undisclosedAttendees?: number;
-  heardThroughTwitter?: number;
-  heardThroughFacebook?: number;
-  heardThroughInstagram?: number;
-  heardThroughMastodon?: number;
-  heardThroughNewsletter?: number;
-  heardThroughWeb?: number;
-  heardThroughSigns?: number;
-  heardThroughOther?: number;
+  Twitter: number | undefined;
+  Facebook: number | undefined;
+  Instagram: number | undefined;
+  Mastodon: number | undefined;
+  Newsletter: number | undefined;
+  Web: number | undefined;
+  Signs: number | undefined;  
+  Other: number | undefined;
 }
 
-const CollumsGraph = () => {
-  const [data, setDataB] = useState<EventData[]>([]);
+const CollumsGraph = ({ data }: DataProps) => {
+  const [collumData, setCollumData] = useState<EventData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/events/?limit=2")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error in obtaining data");
-        }
-        return response.json();
-      })
-      .then((datas) => {
-        setDataB(datas);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+    if (data) {
+      setCollumData([
+        {
+          Twitter: data.heardThroughTwitter || 0,
+          Facebook: data.heardThroughFacebook || 0,
+          Instagram: data.heardThroughInstagram || 0,
+          Mastodon: data.heardThroughMastodon || 0,
+          Newsletter: data.heardThroughNewsletter || 0,
+          Web: data.heardThroughWeb || 0,
+          Signs: data.heardThroughSigns || 0,
+          Other: data.heardThroughOther || 0,
+        },
+      ]);
+      setLoading(false);
+    } else {
+      setCollumData([
+        {
+          Twitter: 0,
+          Facebook: 0,
+          Instagram: 0,
+          Mastodon: 0,
+          Newsletter: 0,
+          Web: 0,
+          Signs: 0,
+          Other: 0,
+        },
+      ]);
+      setLoading(false);
+    }
+  }, [data]);
+
+  console.log(data);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -66,7 +70,7 @@ const CollumsGraph = () => {
         "Other",
       ],
       axisLabel: {
-        interval: 0, 
+        interval: 0,
       },
     },
     yAxis: {
@@ -75,14 +79,14 @@ const CollumsGraph = () => {
     series: [
       {
         data: [
-          data[0]?.heardThroughTwitter,
-          data[0]?.heardThroughFacebook,
-          data[0]?.heardThroughInstagram,
-          data[0]?.heardThroughMastodon,
-          data[0]?.heardThroughNewsletter,
-          data[0]?.heardThroughWeb,
-          data[0]?.heardThroughSigns,
-          data[0]?.heardThroughOther,
+          collumData[0].Twitter,
+          collumData[0].Facebook,
+          collumData[0].Instagram,
+          collumData[0].Mastodon,
+          collumData[0].Newsletter,
+          collumData[0].Web,
+          collumData[0].Signs,
+          collumData[0].Other,
         ],
         type: "bar",
         color: "rgba(255, 177, 193, 1)",
@@ -93,8 +97,9 @@ const CollumsGraph = () => {
       },
     ],
   };
+
   return (
-    <Card className="flex justify-center  h-[330px] w-[100vh] max-w-4xl rounded-md shadow-lg border border-gray-300">
+    <Card className="flex justify-center p-4 h-[330px] w-[100vh] max-w-4xl rounded-md shadow-lg border border-gray-300">
       <CardTitle className="text-3xl text-center ">
         Com ens vas trobar?
         <CardContent className="h-[350px] w-[90vh]">

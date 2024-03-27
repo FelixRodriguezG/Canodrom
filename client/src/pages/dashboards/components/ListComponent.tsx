@@ -10,10 +10,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { fetchActivities, Activity } from "./Api";
-import CardData from "./CardData";
 
-export interface CardDataProps {
-  data: Activity;
+
+export interface DataProps {
+  data: Activity | null;
 }
 interface ListComponentProps {
   onActivitySelected: (activity: Activity) => void;

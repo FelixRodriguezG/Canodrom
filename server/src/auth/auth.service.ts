@@ -40,7 +40,8 @@ export class AuthService {
         return {
         userName,
           email,
-          password
+          password,
+          
         };
       }
 

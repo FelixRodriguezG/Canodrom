@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateEventDto } from './dto/create-event.dto';
-import { UpdateEventDto } from './dto/update-event.dto';
+import { CreateEventsDto } from './dto/create-event.dto';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { Events } from './entities/event.entity';
 import { FindManyOptions, Repository } from 'typeorm';
@@ -12,7 +12,7 @@ export class EventsService {
   ) {}
 
   
-  async create(events: CreateEventDto) {
+  async create(events: CreateEventsDto) {
     return this.eventsRepository.save(this.eventsRepository.create(events));
 
   }

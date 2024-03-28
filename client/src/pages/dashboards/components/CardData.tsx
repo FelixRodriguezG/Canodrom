@@ -16,7 +16,7 @@ function CardData({ data }: CardDataProps) {
   const [cardData, setCardData] = useState<CardItem[]>([
     {
       id: 1,
-      title: "Titol de l'activitat",
+      title: "Públic objectiu",
       value: "Fes click a la llista per veure les dades",
     },
     {
@@ -42,8 +42,8 @@ function CardData({ data }: CardDataProps) {
       setCardData([
         {
           id: 1,
-          title: data.title,
-          value: data.attendees,
+          title: "Públic objectiu",
+          value: data.targetAudience,
         },
         {
           id: 2,

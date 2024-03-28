@@ -13,7 +13,7 @@ const Dashboard = () => {
   };
 
   return (
-    <main className="flex flex-col  min-h-[1080px] ">
+    <main className="flex flex-col  min-h-[800px] ">
       <div className="flex justify-between items-center max-2xl:flex-col gap-3 mx-7">
          <CardData data={selectedActivity} />
          <CollumsGraph data={selectedActivity} />

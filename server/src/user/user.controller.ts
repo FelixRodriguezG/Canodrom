@@ -12,9 +12,9 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
-  findAll(@Query('limit') limit: string) {
-    return this.userService.findAll(limit);
-  }
+  // @Get()
+  // findAll(@Query('limit') limit: string) {
+  //   return this.userService.findAll(limit);
+  // }
 
 }

@@ -6,6 +6,7 @@ import { Events } from './events/entities/events.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -19,10 +20,11 @@ import { User } from './user/entities/user.entity';
       password: 'AVNS_hrKqpPiiy920OvJoLs_',
       database: 'cano',
       entities: [User, Events],
-      synchronize: false,
+      synchronize:false,
     }),
     UserModule,
     EventsModule,
+    AuthModule,
   ],
     controllers: [AppController],
   providers: [AppService],

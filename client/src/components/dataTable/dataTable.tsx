@@ -4,7 +4,6 @@ import {
   SortingState,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
   getFilteredRowModel,
   getSortedRowModel,
   useReactTable,
@@ -21,6 +20,7 @@ import {
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { ScrollArea } from "../ui/scroll-area"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -38,7 +38,6 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -63,6 +62,7 @@ export function DataTable<TData, TValue>({
         />
       </div>
       <Table>
+          <ScrollArea className="h-[500px] rounded-md border p-4">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -103,27 +103,10 @@ export function DataTable<TData, TValue>({
             </TableRow>
           )}
         </TableBody>
+        </ScrollArea>
       </Table>
       
     </div>
-          <div className="flex items-center justify-end space-x-2 py-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
       </>
   )
 }

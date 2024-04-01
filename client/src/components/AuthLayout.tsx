@@ -6,7 +6,6 @@ import { AuthProvider } from '../context/AuthContext';
 
 export const AuthLayout = () => (
     <AuthProvider>
-  
         <Outlet />
     </AuthProvider>
 );

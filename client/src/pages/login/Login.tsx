@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { HeaderLogin } from '@/components/HeaderLogin';
 
 export const Login = () => {
 
@@ -31,6 +32,8 @@ export const Login = () => {
 	};
 
 	return (
+    <>
+    <HeaderLogin/>
     <form className="flex h-screen items-center justify-center" onSubmit={onSubmit}>
     <Card  className="h-[500px] w-full max-w-md">
       <CardHeader className="text-center">
@@ -67,6 +70,7 @@ export const Login = () => {
     </Card>
     
   </form>
+  </>
 	);
 }
 

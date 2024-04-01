@@ -1,49 +1,50 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import  {loginService}  from '../../services/AuthService';
 
+export const Login = () => {
 
-function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  return (
-    <div className="flex h-screen items-center justify-center">
-      <Card  className="h-[500px] w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-5xl pt-4">Entra</CardTitle>
-        </CardHeader>
+  const onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
 
-        <CardContent className="flex flex-col gap-2 pt-12">
-          <Label htmlFor="email" className="text-xl">
-            Nom d'usuari
-          </Label>
-          <Input
-            
-            
-          />
-          <Label htmlFor="password" className="text-xl pt-2">
-            Contrasenya
-          </Label>
-          <Input
-            
-            
-          />
-        </CardContent>
-        <CardFooter className="flex justify-center pt-9">
-          <Button  className="w-[40%] bg-teal-400">
-            Iniciar sessió
-          </Button>
-        </CardFooter>
-      </Card>
-      
-    </div>
-  );
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+	const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		try {
+			await loginService(username, password);
+			navigate('/admin');
+		} catch (error) {
+			console.error('error', error);
+		}
+	};
+
+	return (
+		<>
+				<form onSubmit={onSubmit}>
+					<label htmlFor='username'>Username</label>
+					<input
+						type='text'
+						name='username'
+						value={username}
+						onChange={onChangeUsername}
+					/>
+					<label htmlFor='password'>Password</label>
+					<input
+						type='password'
+						name='password'
+						value={password}
+						onChange={onChangePassword}
+					/>
+					<button type='submit'>Login</button>
+				</form>
+		</>
+	);
 }
-
-export default Login;

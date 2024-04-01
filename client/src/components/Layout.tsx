@@ -1,23 +1,17 @@
+import {Header} from './Header';
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import Header from './Header';
 
-export const Layout = () => {
-  const location = useLocation();
-  let headerDisplay = './';
-  if (location.pathname === '/') {
-    headerDisplay = 'hidden';
-  } else if (location.pathname === '/dashboard') {
-    headerDisplay = 'block';
-  } else {
-   
-    headerDisplay = 'valor-predeterminado';
-  }
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
-  return (
-    <>
-      <Header headerDisplay={headerDisplay} />
-      <Outlet />
-    </>
-  );
+const Layout = ({ children }: LayoutProps) => {
+    return (
+        <>
+            <Header />
+            { children }
+        </>
+    );
 };
+
+export default Layout;

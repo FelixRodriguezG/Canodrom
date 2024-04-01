@@ -9,33 +9,24 @@ export const Header = () => {
     const handleLogOut = () => {
         localStorage.removeItem('user');
         setCurrentUser({ accessToken: '' });
-        navigate('/login');
+        navigate('/');
     };
 
 
     return (
-        <>
-            <header>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to='/'>Home</Link>
-                        </li>
-                        <li>
-                            <Link to='/products'>Products</Link>
-                        </li>
-                        <li>
-                            <Link to='/users'>Users</Link>
-                        </li>
-                    </ul>
-                    <button
+      <>
+      <header className="bg-purple-700 p-5 flex w-full items-center justify-between  ">
+        <img src="./Icon.svg" alt="logo" className='w-[240px]' />
+        <div>
+          <p className={`text-white text-2xl `}>Administrador</p>
+          <button 
                         type='button'
                         onClick={handleLogOut}
                     >
                         Log out
                     </button>
-                </nav>
-            </header>
-        </>
+        </div>
+      </header>
+    </>
     );
 }

@@ -4,6 +4,7 @@ import CollumsGraph from "./components/CollumsGraph";
 import CakeChart from "./components/CakeGraph";
 import { Activity } from "./components/Api";
 import { useState } from "react";
+import { Header } from "@/components/Header";
 
 const Dashboard = () => {
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
@@ -13,6 +14,8 @@ const Dashboard = () => {
   };
 
   return (
+    <>
+    <Header/>
     <main className="flex flex-col  min-h-[800px] ">
       <div className="flex justify-between items-center max-2xl:flex-col gap-3 mx-7">
          <CardData data={selectedActivity} />
@@ -23,6 +26,7 @@ const Dashboard = () => {
         <CakeChart data={selectedActivity} />
       </div>
     </main>
+    </>
   );
 };
 export default Dashboard

@@ -62,10 +62,10 @@ export function DataTable<TData, TValue>({
         />
         <DatePickerWithRange/>
         <Input
-          placeholder="Cerca temática"
-          value={(table.getColumn("attendees")?.getFilterValue() as string) ?? ""}
+          placeholder="Cerca temàtica"
+          value={(table.getColumn("theme")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("attendees")?.setFilterValue(event.target.value)
+            table.getColumn("theme")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginService } from '../../services/AuthService';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,6 +14,13 @@ export const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, []);
+
   const onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
     setError('');
@@ -27,7 +34,8 @@ export const Login = () => {
 	const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			await loginService(username, password);
+			const token = await loginService(username, password);
+      localStorage.setItem('token', token);
 			navigate('/dashboard');
 		} catch (error) {
 			console.error('error', error);

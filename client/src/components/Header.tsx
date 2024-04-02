@@ -7,7 +7,7 @@ export const Header = () => {
     const navigate = useNavigate();
 
     const handleLogOut = () => {
-        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         setCurrentUser({ accessToken: '' });
         navigate('/');
     };

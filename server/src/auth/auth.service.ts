@@ -20,9 +20,10 @@ export class AuthService {
         if(!isPasswordValid){
             throw new UnauthorizedException("Contraseña no valida"+user)
         }
-        const payload ={email: user.email}
+        const name = user.userName
+        const payload ={email: user.email, }
         const token = await this.jwtService.signAsync(payload)
-        return {token, email}
+        return {token, email, name}
     }
     async register({ userName, email, password }: RegisterDto) {
         const userxd = await this.usersService.findOneByEmail(email);

@@ -8,7 +8,7 @@ export const Header = () => {
     const user = localStorage.getItem('user'); 
     const data= JSON.parse(user)
     const handleLogOut = () => {
-        localStorage.removeItem('name'); // Eliminar el nombre de usuario del localStorage
+        localStorage.removeItem('token'); 
         setCurrentUser({ accessToken: '' });
         navigate('/');
     };

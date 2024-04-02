@@ -1,5 +1,5 @@
 import { AuthLayout } from "@/components/AuthLayout";
-import Dashboard from "@/pages/dashboards/Dashboard";
+import Dashboard from "@/pages/dashboard/dashboard";
 import {Login} from "@/pages/login/Login";
 import { createBrowserRouter } from "react-router-dom";
 

@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 type CurrentUserType = [User, Dispatch<User>];
 
-export const AuthContext = createContext<CurrentUserType>([{ accessToken: '' },()=>{}]);
+export const AuthContext = createContext<CurrentUserType>([{ token: '' },()=>{}]);
 
 export const AuthProvider = ({ children }: ChildrenProps) => {
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useState({ accessToken: '' });
+    const [currentUser, setCurrentUser] = useState({ token: '' });
 
     useEffect(() => {
         const checkLoggedIn = async () => {

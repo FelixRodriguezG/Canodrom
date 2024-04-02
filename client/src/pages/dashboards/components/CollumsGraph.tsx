@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
@@ -10,11 +11,11 @@ interface EventData {
   Mastodon: number | undefined;
   Newsletter: number | undefined;
   Web: number | undefined;
-  Signs: number | undefined;  
+  Signs: number | undefined;
   Other: number | undefined;
 }
 
-const CollumsGraph = ({ data }: DataProps) => {
+const CollumsGraph = ({ data, className }: DataProps) => {
   const [collumData, setCollumData] = useState<EventData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -99,7 +100,7 @@ const CollumsGraph = ({ data }: DataProps) => {
   };
 
   return (
-    <Card className="flex justify-center p-4 h-[330px] w-[100vh] max-w-4xl rounded-md shadow-lg border border-gray-300">
+    <Card className={className}>
       <CardTitle className="text-3xl text-center ">
         Com ens vas trobar?
         <CardContent className="h-[350px] w-[90vh]">

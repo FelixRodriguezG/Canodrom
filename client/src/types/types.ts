@@ -3,5 +3,5 @@ export type ChildrenProps = {
 }
 
 export type User = {
-    accessToken:string;
+    token:string;
 }

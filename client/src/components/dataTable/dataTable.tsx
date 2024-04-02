@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/table"
 import { useState } from "react"
 import { Input } from "../ui/input"
-import { Button } from "../ui/button"
 import { ScrollArea } from "../ui/scroll-area"
+import { DatePickerWithRange } from "../datePicker"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -57,6 +57,15 @@ export function DataTable<TData, TValue>({
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <DatePickerWithRange/>
+        <Input
+          placeholder="Cerca temática"
+          value={(table.getColumn("attendees")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("attendees")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

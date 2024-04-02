@@ -2,7 +2,6 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
-import { DataProps } from "./ListComponent";
 
 interface EventData {
   Twitter: number | undefined;

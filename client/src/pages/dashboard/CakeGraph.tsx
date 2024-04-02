@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
-import { DataProps } from "./ListComponent";
 
 interface PieData {
   Homes: number | undefined;

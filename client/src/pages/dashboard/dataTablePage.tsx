@@ -2,7 +2,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { columns } from "../../components/dataTable/columns"
 import { DataTable } from "../../components/dataTable/dataTable"
-import { Activity, fetchActivities } from "../dashboards/components/Api";
+import { Activity, fetchActivities } from "./Api";
 
 const DataTablePageContent = ({ onRowClick }: { onRowClick: (activity: Activity) => void }) => {
   const [data, setData] = useState<Activity[]>([]);

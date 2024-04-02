@@ -4,33 +4,81 @@ import { Activity } from "./Api";
 import { useState } from "react";
 import DataTablePage from "./dataTablePage";
 import { Header } from "@/components/Header";
-
 const Dashboard = () => {
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
     null
   );
-
   const handleActivitySelected = (activity: Activity) => {
     setSelectedActivity(activity);
   };
-  const styleCakeChart =
-    "h-[331px] shadow-lg w-full max-w-sm  rounded-md border border-gray-300";
+  const className1 =
+    "h-[334px] shadow-lg w-[250px] max-w-sm  rounded-md border border-slate-300";
+  const className2 =
+    "h-[334px] shadow-lg w-[250px] max-w-sm  rounded-md border border-slate-300";
+  const className3 =
+    "h-[334px] shadow-lg w-[250px] max-w-sm  rounded-md border border-slate-300";
   const styleCollumsGraph =
-    "flex justify-center p-4 h-[331px] w-[100vh] max-w-4xl rounded-md shadow-lg border border-gray-300";
+    "flex justify-center p-4 h-[331px] w-[100vh] max-w-2xl rounded-md shadow-lg border border-gray-300";
   return (
-  <div>
-    <Header/>
-    <main className="flex flex-col  min-h-[800px] "> 
-      <div className="flex justify-center pt-10 items-start max-xl:flex-col gap-14 mx-7">
-        <CakeChart className={styleCakeChart} data={selectedActivity} />
-        <CollumsGraph className={styleCollumsGraph} data={selectedActivity} />
-      </div>
-      <div className="w-full px-10 py-10 items-center max-2xl:flex-col-reverse gap-2 max-2xl:items-center  ">
-        <DataTablePage onRowClick={handleActivitySelected} />
+    <div>
+   <Header/> 
+    <main className="flex flex-col min-h-[800px] mx-auto py-10 sm:px-0">
+      <div className="flex flex-col justify-between items-center  gap-3 mx-10">
+        <div className="flex justify-around  gap-6 items-center">
+          <CakeChart
+            title="Tipus d'activitat"
+            className={className1}
+            data={selectedActivity}
+          />
+          <CakeChart
+            title="Temàtica"
+            className={className2}
+            data={selectedActivity}
+          />
+          <CakeChart
+            title="Asistencia"
+            className={className3}
+            data={selectedActivity}
+          />
+          <CollumsGraph className={styleCollumsGraph} data={selectedActivity} />
+        </div>
+        <div>
+          <DataTablePage onRowClick={handleActivitySelected} />
+          <div className="flex justify-center gap-6">
+            <CakeChart
+              title="Asistencia"
+              className={className3}
+              data={selectedActivity}
+            />
+            <CollumsGraph
+              className={styleCollumsGraph}
+              data={selectedActivity}
+            />
+          </div>
+        </div>
       </div>
     </main>
     </div>
   );
 };
-
 export default Dashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

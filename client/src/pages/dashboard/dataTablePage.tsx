@@ -1,4 +1,3 @@
-
 import { Suspense, useEffect, useState } from "react";
 import { columns } from "../../components/dataTable/columns"
 import { DataTable } from "../../components/dataTable/dataTable"

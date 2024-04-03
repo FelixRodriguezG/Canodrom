@@ -85,6 +85,20 @@ export const columns: ColumnDef<EventsList>[] = [
     }
   },
   {
+    accessorKey: "theme",
+    header: ({ column }) => {
+        return (
+            <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                Temàtica
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        )
+    }
+  },
+  {
     accessorKey: "attendees",
     header: ({ column }) => {
         return (
@@ -99,14 +113,56 @@ export const columns: ColumnDef<EventsList>[] = [
     }
   },
   {
-    accessorKey: "theme",
+    accessorKey: "femaleAttendees",
     header: ({ column }) => {
         return (
             <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                Temàtica
+                F
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        )
+    }
+  },
+  {
+    accessorKey: "maleAttendees",
+    header: ({ column }) => {
+        return (
+            <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                M
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        )
+    }
+  },
+  {
+    accessorKey: "nonBinaryAttendees",
+    header: ({ column }) => {
+        return (
+            <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                NB
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        )
+    }
+  },
+  {
+    accessorKey: "undisclosedAttendees",
+    header: ({ column }) => {
+        return (
+            <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                NC
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         )

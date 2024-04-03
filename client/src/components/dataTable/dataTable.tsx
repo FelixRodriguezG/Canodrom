@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm mr-4"
         />
         <DatePickerWithRange/>
         <Input
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("theme")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm mx-4"
         />
       </div>
       <Table>

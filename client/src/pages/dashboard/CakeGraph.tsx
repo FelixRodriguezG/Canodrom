@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
+import { DataProps } from "./Api";
 
 interface PieData {
   Homes: number | undefined;
@@ -8,7 +9,7 @@ interface PieData {
   NoResponde: number | undefined;
 }
 
-const CakeChart = ({ data, className }: DataProps) => {
+const CakeChart = ({ data, title }: DataProps) => {
   const chartRef = useRef(null);
   const [pieData, setPieData] = useState<PieData>({
     Homes: 0,
@@ -96,7 +97,7 @@ const CakeChart = ({ data, className }: DataProps) => {
     };
   }, [data]);
 
-  return <div ref={chartRef} className={className} />;
+  return <div ref={chartRef} className="h-[334px] shadow-lg w-[250px] max-w-sm  rounded-md border border-slate-300" />;
 };
 
 export default CakeChart;

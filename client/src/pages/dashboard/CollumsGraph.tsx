@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
+import { DataProps } from "./Api";
 
 interface EventData {
   Twitter: number | undefined;
@@ -14,7 +14,7 @@ interface EventData {
   Other: number | undefined;
 }
 
-const CollumsGraph = ({ data, className }: DataProps) => {
+const CollumsGraph = ({ data }: DataProps) => {
   const [collumData, setCollumData] = useState<EventData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -99,13 +99,13 @@ const CollumsGraph = ({ data, className }: DataProps) => {
   };
 
   return (
-    <Card className={className}>
-      <CardTitle className="text-3xl text-center ">
+    <Card className="xl:w-[50vw] min-w-[600px] w-full h-[338px]">
+      <CardTitle className="text-2xl text-center ">
         Com ens vas trobar?
-        <CardContent className="h-[350px] w-[90vh]">
-          <ReactECharts option={option} />
-        </CardContent>
       </CardTitle>
+      <CardContent>
+        <ReactECharts option={option} />
+      </CardContent>
     </Card>
   );
 };

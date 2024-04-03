@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="rounded-md border  border-gray-300 ">
+      <div className="rounded-md border  border-gray-300 w-[98vw]">
         <div className="flex items-center p-4">
           <Input
             placeholder="Cerca títol"
@@ -61,7 +61,7 @@ export function DataTable<TData, TValue>({
             onChange={(event) =>
               table.getColumn("title")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm"
+            className="max-w-sm mr-4"
           />
                     <Input
             placeholder="Cerca temàtica"
@@ -70,6 +70,14 @@ export function DataTable<TData, TValue>({
               table.getColumn("theme")?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
+          />
+                              <Input
+            placeholder="Cerca tipus d'activitat"
+            value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("type")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm mx-4"
           />
         </div>
         <Table className="shadow-xl">

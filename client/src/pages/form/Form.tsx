@@ -65,7 +65,7 @@ export function Form() {
     <>
     <Header/>
     <div className="flex justify-center m-5">
-      <form onSubmit={handleSubmit} className="flex flex-col p-10 gap-5 rounded-md border border-slate-300 w-[75%]">
+      <form onSubmit={handleSubmit} className="flex flex-col p-10 gap-5 rounded-md border border-slate-300 w-[65%]">
         <h1 className="text-2xl font-bold mb-5 text-center bg-purple-700 p-5 text-white rounded-md">FORMULARI CREACIÓ ACTIVITATS</h1>
         <Label  className='mt-5'>Responsable</Label>
         <Input

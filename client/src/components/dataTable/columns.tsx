@@ -57,20 +57,6 @@ export const columns: ColumnDef<EventsList>[] = [
     }
   },
   {
-    accessorKey: "endDate",
-    header: ({ column }) => {
-        return (
-            <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            >
-                Data fi
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-        )
-    }
-  },
-  {
     accessorKey: "repetition",
     header: ({ column }) => {
         return (
@@ -93,6 +79,20 @@ export const columns: ColumnDef<EventsList>[] = [
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
                 Temàtica
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        )
+    }
+  },
+  {
+    accessorKey: "type",
+    header: ({ column }) => {
+        return (
+            <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                Tipo
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         )

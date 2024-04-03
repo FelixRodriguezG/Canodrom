@@ -69,6 +69,14 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm mx-4"
         />
+                <Input
+          placeholder="Cerca tipus d'activitat"
+          value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("type")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
       </div>
       <Table>
           <ScrollArea className="h-[500px] rounded-md border p-4">

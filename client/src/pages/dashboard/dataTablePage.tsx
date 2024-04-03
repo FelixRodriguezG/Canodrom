@@ -1,9 +1,9 @@
 import { Suspense, useEffect, useState } from "react";
 import { columns } from "../../components/dataTable/columns"
 import { DataTable } from "../../components/dataTable/dataTable"
-import { Activity, fetchActivities } from "../dashboards/components/Api";
+import { Activity, fetchActivities } from "./Api";
 
-const DataTablePageContent = () => {
+const DataTablePageContent = ({ onRowClick }: { onRowClick: (activity: Activity) => void }) => {
   const [data, setData] = useState<Activity[]>([]);
 
   useEffect(() => {
@@ -20,16 +20,16 @@ const DataTablePageContent = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+    <div>
+      <DataTable columns={columns} data={data} onRowClick={onRowClick} />
     </div>
   );
 };
 
-const DataTablePage = () => {
+const DataTablePage = ({ onRowClick }: { onRowClick: (activity: Activity) => void }) => {
   return (
     <Suspense fallback={<div>Cargando datos...</div>}>
-      <DataTablePageContent />
+      <DataTablePageContent onRowClick={onRowClick} />
     </Suspense>
   );
 };

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
-import { DataProps } from "./ListComponent";
 
 interface PieData {
   Homes: number | undefined;
@@ -9,7 +8,7 @@ interface PieData {
   NoResponde: number | undefined;
 }
 
-const CakeChart = ({ data }: DataProps) => {
+const CakeChart = ({ data, className }: DataProps) => {
   const chartRef = useRef(null);
   const [pieData, setPieData] = useState<PieData>({
     Homes: 0,
@@ -22,7 +21,7 @@ const CakeChart = ({ data }: DataProps) => {
     if (data) {
       setPieData({
         Homes: data.maleAttendees || 0,
-        Dones: data.femaleAttendees || 0, 
+        Dones: data.femaleAttendees || 0,
         NoBinaries: data.nonBinaryAttendees || 0,
         NoResponde: data.undisclosedAttendees || 0,
       });
@@ -36,8 +35,8 @@ const CakeChart = ({ data }: DataProps) => {
       },
       legend: {
         orient: "horizontal",
-        right: "8%",
-        bottom: "30px",
+        right: "1%",
+        bottom: "16px",
       },
       series: [
         {
@@ -97,12 +96,7 @@ const CakeChart = ({ data }: DataProps) => {
     };
   }, [data]);
 
-  return (
-    <div
-      ref={chartRef}
-      className="h-[500px] shadow-lg w-full max-w-md  rounded-md border border-gray-300"
-    />
-  );
+  return <div ref={chartRef} className={className} />;
 };
 
 export default CakeChart;

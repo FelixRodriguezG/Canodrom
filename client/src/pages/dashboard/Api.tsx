@@ -22,6 +22,12 @@ export interface Activity {
     heardThroughSigns?: number;
     heardThroughOther?: number;
   }
+
+export interface DataProps{
+    data: Activity| null;
+    title?: string;
+
+}
 export async function fetchActivities(): Promise<Activity[]> {
     try {
       const response = await fetch("http://localhost:3000/events");

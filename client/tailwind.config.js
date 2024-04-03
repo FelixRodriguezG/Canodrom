@@ -17,8 +17,9 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: [ 'Graphik', 'sans-serif' ],
+      sans: [ 'Space Grotesk', 'sans-serif' ],
       serif: [ 'Merriweather', 'serif' ],
+     
     },
     extend: {
       spacing: {

@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { DataModule } from './dataForm/dataForm.module';
+import { Data } from './dataForm/entities/dataForm.entity';
 
 
 
@@ -19,12 +21,13 @@ import { AuthModule } from './auth/auth.module';
       username: 'avnadmin',
       password: 'AVNS_hrKqpPiiy920OvJoLs_',
       database: 'cano',
-      entities: [User, Events],
+      entities: [User, Events,Data],
       synchronize:false,
     }),
     UserModule,
     EventsModule,
     AuthModule,
+    DataModule
   ],
     controllers: [AppController],
   providers: [AppService],

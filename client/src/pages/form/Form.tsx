@@ -34,7 +34,7 @@ export function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/data', {
+      const response = await fetch('http://localhost:3000/data/crear', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

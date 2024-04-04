@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const [currentUser, setCurrentUser] = useContext(AuthContext);
@@ -23,6 +23,10 @@ export const Header = () => {
     <>
       <header className="bg-purple-700 p-5 flex w-full items-center justify-between  ">
         <img src="./Icon.svg" alt="logo" className='w-[240px]' />
+        <div className='flex gap-5 '>
+        <Link to="../form"><img src="./fileSend.svg" alt="logo" className='w-[40px] ml-6' /><span className='font-semibold text-lg text-[#46FCD6]'>Formulario</span></Link>
+        <Link to="../dashboard"><img src="./dahboard1.svg" alt="logo" className='w-[40px] ml-6' /><span className='font-semibold text-lg text-[#46FCD6]'>Dashboard</span></Link>
+        </div>
         <div>
           <p className={`text-white text-2xl `}>{'Bienvenido/a! ' + data}</p>
           <button 

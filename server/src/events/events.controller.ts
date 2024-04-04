@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventsDto } from './dto/create-events.dto';
@@ -13,8 +14,20 @@ export class EventsController {
   }
 
   @Get()
-  findAll(@Query('limit') limit: string) {
-    return this.eventsService.findAll(limit);
+  async findAll(@Query('limit') limit: string) {
+      const events = await this.eventsService.findAll(limit);
+
+      const moment = require('moment')
+
+      events.forEach((event) => {
+          event.startDate = moment(event.startDate).format('YYYY-MM-DD');
+      });
+
+      events.forEach((event) => {
+        event.endDate = moment(event.endDate).format('YYYY-MM-DD');
+    });
+
+      return events;
   }
 
   @Get('/find/:title')

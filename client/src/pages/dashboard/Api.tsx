@@ -26,7 +26,7 @@ export interface Activity {
 export interface DataProps{
     data: Activity| null;
     title?: string;
-
+  
 }
 export async function fetchActivities(): Promise<Activity[]> {
     try {

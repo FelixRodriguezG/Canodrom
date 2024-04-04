@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateEventsDto } from './dto/create-events.dto';
 
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +10,7 @@ import { FindManyOptions, Repository } from 'typeorm';
   export class EventsService {
     constructor(
       @InjectRepository(Events) private eventsRepository: Repository<Events>,
+      @Inject('MomentWrapper') private momentWrapper: moment.Moment
     ) {}
 
     async create(events: CreateEventsDto) {

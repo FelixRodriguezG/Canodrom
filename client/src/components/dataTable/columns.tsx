@@ -50,7 +50,7 @@ export const columns: ColumnDef<EventsList>[] = [
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                Data inici
+                Data
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         )
@@ -71,6 +71,20 @@ export const columns: ColumnDef<EventsList>[] = [
     }
   },
   {
+    accessorKey: "type",
+    header: ({ column }) => {
+        return (
+            <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                Tipus
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        )
+    }
+  },
+  {
     accessorKey: "theme",
     header: ({ column }) => {
         return (
@@ -79,20 +93,6 @@ export const columns: ColumnDef<EventsList>[] = [
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
                 Temàtica
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-        )
-    }
-  },
-  {
-    accessorKey: "type",
-    header: ({ column }) => {
-        return (
-            <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            >
-                Tipo
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         )
@@ -107,20 +107,6 @@ export const columns: ColumnDef<EventsList>[] = [
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
                 Assistents
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-        )
-    }
-  },
-  {
-    accessorKey: "theme",
-    header: ({ column }) => {
-        return (
-            <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            >
-                Temàtica
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         )

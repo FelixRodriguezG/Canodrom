@@ -80,4 +80,60 @@ export class DataService {
 
     return workbook;
   }
-}
+  async processExcel(file): Promise<void> {
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.load(file.buffer);
+
+    const worksheet = workbook.worksheets[0];
+
+    worksheet.eachRow(async (row, rowNumber) => {
+      // Saltar la primera fila si contiene encabezados
+      if (rowNumber === 1) return;
+      const rowValues = row.values;
+      const [
+        responsable,
+        titulo,
+        programa,
+        tematica,
+        publico,
+        organizador,
+        fechaInicio,
+        tipusActivitat,
+        noSessions,
+        noAssistencia,
+        numAsistentes,
+        numHombres,
+        numMujeres,
+        numNN,
+        numNoBinari,
+        infantsAcompanados,
+        streaming,
+        notes,
+      ]= Object.keys(rowValues).map(key => rowValues[key]);
+
+      const newData = this.dataRepository.create({
+        responsable,
+        titulo,
+        programa,
+        tematica,
+        publico,
+        organizador,
+        fechaInicio: new Date(fechaInicio),
+        tipusActivitat,
+        noSessions,
+        noAssistencia,
+        numAsistentes,
+        numHombres,
+        numMujeres,
+        numNN,
+        numNoBinari,
+        infantsAcompanados,
+        streaming,
+        notes,
+      });
+
+      await this.dataRepository.save(newData);
+    });
+  }
+  }
+

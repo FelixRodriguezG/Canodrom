@@ -1,31 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "../ui/button";
+import { EventsList } from "@/pages/dashboard/interfaces/interfaces";
 
-export type EventsList = {
-    title: string;
-    startDate: string;
-    endDate: string;
-    program: string;
-    repetition: number;
-    attendees: number;
-    theme: string;
-    type: string;
-    targetAudience: string;
-    Organizer: string;
-    femaleAttendees?: number;
-    maleAttendees?: number;
-    nonBinaryAttendees?: number;
-    undisclosedAttendees?: number;
-    heardThroughTwitter?: number;
-    heardThroughFacebook?: number;
-    heardThroughInstagram?: number;
-    heardThroughMastodon?: number;
-    heardThroughNewsletter?: number;
-    heardThroughWeb?: number;
-    heardThroughSigns?: number;
-    heardThroughOther?: number;
-}
 
 export const columns: ColumnDef<EventsList>[] = [
   {

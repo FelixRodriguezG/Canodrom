@@ -3,13 +3,33 @@ import DataTablePage from "./dataTablePage";
 import { Header } from "@/components/Header";
 import CakeChart from "./CakeGraph";
 import CollumsGraph from "./CollumsGraph";
-import { Activity, fetchActivities } from "./Api";
+import { fetchActivities } from "./Api";
+import { EventsList } from "./interfaces/interfaces";
 
 const Dashboard = () => {
-  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
+  const [selectedActivity, setSelectedActivity] = useState<EventsList | null>(
     null
   );
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const initialTotals: EventsList = {
+    attendees: 0,
+    femaleAttendees: 0,
+    maleAttendees: 0,
+    nonBinaryAttendees: 0,
+    undisclosedAttendees: 0,
+    heardThroughTwitter: 0,
+    heardThroughFacebook: 0,
+    heardThroughInstagram: 0,
+    heardThroughMastodon: 0,
+    heardThroughNewsletter: 0,
+    heardThroughWeb: 0,
+    heardThroughSigns: 0,
+    heardThroughOther: 0,
+  }
+
+  const [activities, setActivities] = useState<EventsList[]>([]);
+  const [totals, setTotals] = useState<EventsList>(
+    initialTotals
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +45,12 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  const handleActivitySelected = (activity: Activity) => {
+  const handleActivitySelected = (activity: EventsList) => {
     setSelectedActivity(activity);
+  };
+  const handleTotalsChange = (newTotals: EventsList) => {
+    setTotals(newTotals);
+    console.log("New Totals:", totals)
   };
 
   return (
@@ -38,10 +62,12 @@ const Dashboard = () => {
             <CakeChart title="Tipus d'activitat" data={selectedActivity} />
             <CakeChart title="Temàtica" data={selectedActivity} />
             <CakeChart title="Asistencia" data={selectedActivity} />
-            <CollumsGraph data={selectedActivity} />
+            <CollumsGraph 
+            data={selectedActivity}
+            totals={totals} />
           </div>
           <div>
-            <DataTablePage onRowClick={handleActivitySelected} />
+            <DataTablePage onRowClick={handleActivitySelected} onTotalschange={handleTotalsChange} initialTotals={initialTotals}/>
             <div className="flex justify-center gap-6">
               <CakeChart
                 title="Asistencia"

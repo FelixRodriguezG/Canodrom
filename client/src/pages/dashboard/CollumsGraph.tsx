@@ -1,7 +1,7 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
-import { DataProps } from "./Api";
+import { DataProps } from "./interfaces/interfaces";
 
 interface EventData {
   Twitter: number | undefined;
@@ -14,45 +14,50 @@ interface EventData {
   Other: number | undefined;
 }
 
-const CollumsGraph = ({ data }: DataProps) => {
+const CollumsGraph = ({ data, totals }: DataProps) => {
   const [collumData, setCollumData] = useState<EventData[]>([]);
   const [loading, setLoading] = useState(true);
-
+  
+  console.log("Data:", totals)
   useEffect(() => {
-    if (data) {
-      setCollumData([
-        {
-          Twitter: data.heardThroughTwitter || 0,
-          Facebook: data.heardThroughFacebook || 0,
-          Instagram: data.heardThroughInstagram || 0,
-          Mastodon: data.heardThroughMastodon || 0,
-          Newsletter: data.heardThroughNewsletter || 0,
-          Web: data.heardThroughWeb || 0,
-          Signs: data.heardThroughSigns || 0,
-          Other: data.heardThroughOther || 0,
-        },
-      ]);
-      setLoading(false);
-    } else {
-      setCollumData([
-        {
-          Twitter: 0,
-          Facebook: 0,
-          Instagram: 0,
-          Mastodon: 0,
-          Newsletter: 0,
-          Web: 0,
-          Signs: 0,
-          Other: 0,
-        },
-      ]);
-      setLoading(false);
+    let sourceData = data;
+    if (!data && totals) {
+      sourceData = totals;
     }
-  }, [data]);
+    if (sourceData) {
+      console.log("ENTRA?",sourceData)
+      setCollumData([
+        {
+          Twitter: sourceData.heardThroughTwitter ,
+          Facebook: sourceData.heardThroughFacebook ,
+          Instagram: sourceData.heardThroughInstagram,
+          Mastodon: sourceData.heardThroughMastodon ,
+          Newsletter: sourceData.heardThroughNewsletter,
+          Web: sourceData.heardThroughWeb ,
+          Signs: sourceData.heardThroughSigns,
+          Other: sourceData.heardThroughOther,
+        },
+      ]);
+    } else {
+    setCollumData([
+      {
+        Twitter: 0,
+        Facebook: 0,
+        Instagram: 0,
+        Mastodon: 0,
+        Newsletter: 0,
+        Web: 0,
+        Signs: 0,
+        Other: 0,
+      },
+    ]);
+  }
+  setLoading(false);
+  console.log("dafjksdlñfjalksdñjflkañ",totals)
+}, [data, totals]);
 
-  console.log(data);
 
-  if (loading) {
+if (loading) {
     return <div>Loading...</div>;
   }
 

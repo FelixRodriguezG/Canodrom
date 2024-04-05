@@ -1,16 +1,23 @@
 import { Suspense, useEffect, useState } from "react";
 import { columns } from "../../components/dataTable/columns"
 import { DataTable } from "../../components/dataTable/dataTable"
-import { Activity, fetchActivities } from "./Api";
+import { fetchActivities } from "./Api";
+import { EventsList } from "./interfaces/interfaces";
 
-const DataTablePageContent = ({ onRowClick }: { onRowClick: (activity: Activity) => void }) => {
-  const [data, setData] = useState<Activity[]>([]);
+interface DataTablePageContentProps {
+  onRowClick: (events: EventsList) => void;
+  onTotalschange: (newTotals: EventsList) => void;
+  initialTotals: EventsList;
+}
+
+const DataTablePageContent = ({ onRowClick, onTotalschange, initialTotals }: DataTablePageContentProps) => {
+  const [data, setData] = useState<EventsList[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const activities = await fetchActivities();
-        setData(activities);
+        const events = await fetchActivities();
+        setData(events);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -21,15 +28,22 @@ const DataTablePageContent = ({ onRowClick }: { onRowClick: (activity: Activity)
 
   return (
     <div>
-      <DataTable columns={columns} data={data} onRowClick={onRowClick} />
+      <DataTable columns={columns} data={data} onRowClick={onRowClick} onTotalschange={onTotalschange} initialTotals={initialTotals}/>
+      
     </div>
   );
 };
 
-const DataTablePage = ({ onRowClick }: { onRowClick: (activity: Activity) => void }) => {
+interface DataTablePageProps {
+  onRowClick: (activity: EventsList) => void;
+  onTotalschange: (newTotals: EventsList) => void;
+  initialTotals: EventsList; // Añade esta línea
+}
+
+const DataTablePage = ({ onRowClick, onTotalschange, initialTotals }: DataTablePageProps) => {
   return (
     <Suspense fallback={<div>Cargando datos...</div>}>
-      <DataTablePageContent onRowClick={onRowClick} />
+      <DataTablePageContent onRowClick={onRowClick} onTotalschange={onTotalschange} initialTotals={initialTotals} /> 
     </Suspense>
   );
 };

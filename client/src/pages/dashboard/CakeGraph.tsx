@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
-import { DataProps } from "./Api";
+import { DataProps } from "./interfaces/interfaces";
 
 interface PieData {
   Homes: number | undefined;

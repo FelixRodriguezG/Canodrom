@@ -1,34 +1,7 @@
-export interface Activity {
-    title: string;
-    startDate: string;
-    endDate: string;
-    program: string;
-    repetition: number;
-    attendees: number;
-    theme: string;
-    type: string;
-    targetAudience: string;
-    Organizer: string;
-    femaleAttendees?: number;
-    maleAttendees?: number;
-    nonBinaryAttendees?: number;
-    undisclosedAttendees?: number;
-    heardThroughTwitter?: number;
-    heardThroughFacebook?: number;
-    heardThroughInstagram?: number;
-    heardThroughMastodon?: number;
-    heardThroughNewsletter?: number;
-    heardThroughWeb?: number;
-    heardThroughSigns?: number;
-    heardThroughOther?: number;
-  }
+import { EventsList } from "./interfaces/interfaces";
 
-export interface DataProps{
-    data: Activity| null;
-    title?: string;
-  
-}
-export async function fetchActivities(): Promise<Activity[]> {
+
+export async function fetchActivities(): Promise<EventsList[]> {
     try {
       const response = await fetch("http://localhost:3000/events");
       if (!response.ok) {

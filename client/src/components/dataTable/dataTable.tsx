@@ -17,40 +17,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Input } from "../ui/input"
 import { ScrollArea } from "../ui/scroll-area"
+import { EventsList } from "@/pages/dashboard/interfaces/interfaces";
 
-export interface EventDataTable {
-  attendees: number;
-  femaleAttendees: number;
-  maleAttendees: number;
-  nonBinaryAttendees: number;
-  undisclosedAttendees: number;
-  heardThroughTwitter: number;
-  heardThroughFacebook: number;
-  heardThroughInstagram: number;
-  heardThroughMastodon: number;
-  heardThroughNewsletter: number;
-  heardThroughWeb: number;
-  heardThroughSigns: number;
-  heardThroughOther: number;
-  // ... any other properties that you need
-}
 
-export interface DataTableProps<TData, TValue> {
+export interface DataTableProps<TData extends EventsList, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onRowClick?: (data: TData) => void;
+  onTotalschange: (newTotals: EventsList) => void;
+  initialTotals: EventsList;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends EventsList, TValue>({
   columns,
   data,
   onRowClick,
+  onTotalschange,
+  initialTotals
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [totals, setTotals] = useState<EventsList>(initialTotals)
 
   const table = useReactTable({
     data,
@@ -65,42 +55,41 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
   });
+  
 
-  
-  const totals = table.getRowModel().rows.reduce(
-    (acc, row) => {
-      acc.attendees += row.original.attendees;
-      acc.femaleAttendees += row.original.femaleAttendees;
-      acc.maleAttendees += row.original.maleAttendees;
-      acc.nonBinaryAttendees += row.original.nonBinaryAttendees;
-      acc.undisclosedAttendees += row.original.undisclosedAttendees;
-      acc.heardThroughTwitter += row.original.heardThroughTwitter;
-      acc.heardThroughFacebook += row.original.heardThroughFacebook;
-      acc.heardThroughInstagram += row.original.heardThroughInstagram;
-      acc.heardThroughMastodon += row.original.heardThroughMastodon;
-      acc.heardThroughNewsletter += row.original.heardThroughNewsletter;
-      acc.heardThroughWeb += row.original.heardThroughWeb;
-      acc.heardThroughSigns += row.original.heardThroughSigns;
-      acc.heardThroughOther += row.original.heardThroughOther;
-      return acc;
-    },
-    {
-      attendees: 0,
-      femaleAttendees: 0,
-      maleAttendees: 0,
-      nonBinaryAttendees: 0,
-      undisclosedAttendees: 0,
-      heardThroughTwitter: 0,
-      heardThroughFacebook: 0,
-      heardThroughInstagram: 0,
-      heardThroughMastodon: 0,
-      heardThroughNewsletter: 0,
-      heardThroughWeb: 0,
-      heardThroughSigns: 0,
-      heardThroughOther: 0,
-    }
-  );
-  
+  useEffect(() => {
+    const calculateTotals = () => {
+      const totals = table.getRowModel().rows.reduce(
+        (acc, row) => {
+          acc.attendees += row.original.attendees;
+          acc.femaleAttendees += row.original.femaleAttendees;
+          acc.maleAttendees += row.original.maleAttendees;
+          acc.nonBinaryAttendees += row.original.nonBinaryAttendees;
+          acc.undisclosedAttendees += row.original.undisclosedAttendees;
+          acc.heardThroughTwitter += row.original.heardThroughTwitter;
+          acc.heardThroughFacebook += row.original.heardThroughFacebook;
+          acc.heardThroughInstagram += row.original.heardThroughInstagram;
+          acc.heardThroughMastodon += row.original.heardThroughMastodon;
+          acc.heardThroughNewsletter += row.original.heardThroughNewsletter;
+          acc.heardThroughWeb += row.original.heardThroughWeb;
+          acc.heardThroughSigns += row.original.heardThroughSigns;
+          acc.heardThroughOther += row.original.heardThroughOther;
+          return acc;
+        },
+        initialTotals
+        
+      );
+      return totals;
+    };
+
+    const newTotals = calculateTotals();
+    setTotals(newTotals);
+    onTotalschange(newTotals);
+    console.log(newTotals)
+  }, [table.getRowModel().rows]);
+
+  console.log("movidas", table.getRowModel().rows)
+
   console.log(totals);
   return (
     <>
@@ -131,8 +120,8 @@ export function DataTable<TData, TValue>({
             className="max-w-sm mx-4"
           />
         </div>
-        <Table className="shadow-xl">
         <ScrollArea className="h-[500px] rounded-md border p-4">
+        <Table className="shadow-xl">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -181,8 +170,8 @@ export function DataTable<TData, TValue>({
               </TableRow>
             )}
           </TableBody>
-          </ScrollArea>
         </Table>
+          </ScrollArea>
       </div>
     </>
   );

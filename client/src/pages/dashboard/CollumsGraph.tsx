@@ -2,59 +2,83 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import { DataProps } from "./interfaces/interfaces";
+import { EventData } from "./interfaces/interfaces";
 
-interface EventData {
-  Twitter: number | undefined;
-  Facebook: number | undefined;
-  Instagram: number | undefined;
-  Mastodon: number | undefined;
-  Newsletter: number | undefined;
-  Web: number | undefined;
-  Signs: number | undefined;
-  Other: number | undefined;
-}
 
 const CollumsGraph = ({ data, totals }: DataProps) => {
   const [collumData, setCollumData] = useState<EventData[]>([]);
+  const [sourceData, setSourceData] = useState(totals);
+  const [prevData, setPrevData] = useState(data);
   const [loading, setLoading] = useState(true);
-  
-  console.log("Data:", totals)
+
   useEffect(() => {
-    let sourceData = data;
-    if (!data && totals) {
-      sourceData = totals;
+    if (data !== prevData) {
+      setSourceData(data);
+      setPrevData(data);
+    } else if (totals) {
+      setSourceData(totals);
     }
+  }, [data, totals]);
+console.log("sourceData",sourceData)
+  useEffect(() => {
     if (sourceData) {
-      console.log("ENTRA?",sourceData)
       setCollumData([
         {
-          Twitter: sourceData.heardThroughTwitter ,
-          Facebook: sourceData.heardThroughFacebook ,
+          Twitter: sourceData.heardThroughTwitter,
+          Facebook: sourceData.heardThroughFacebook,
           Instagram: sourceData.heardThroughInstagram,
-          Mastodon: sourceData.heardThroughMastodon ,
+          Mastodon: sourceData.heardThroughMastodon,
           Newsletter: sourceData.heardThroughNewsletter,
-          Web: sourceData.heardThroughWeb ,
+          Web: sourceData.heardThroughWeb,
           Signs: sourceData.heardThroughSigns,
           Other: sourceData.heardThroughOther,
         },
       ]);
-    } else {
-    setCollumData([
-      {
-        Twitter: 0,
-        Facebook: 0,
-        Instagram: 0,
-        Mastodon: 0,
-        Newsletter: 0,
-        Web: 0,
-        Signs: 0,
-        Other: 0,
-      },
-    ]);
-  }
-  setLoading(false);
-  console.log("dafjksdlñfjalksdñjflkañ",totals)
-}, [data, totals]);
+      setLoading(false);
+    }
+  }, [sourceData]);
+  
+  
+  
+  
+  
+  
+//   useEffect(() => {
+//     let sourceData = data;
+//     if (!data && totals) {
+//       sourceData = totals;
+//     }
+//     if (sourceData) {
+//       console.log("ENTRA?",sourceData)
+//       setCollumData([
+//         {
+//           Twitter: sourceData.heardThroughTwitter ,
+//           Facebook: sourceData.heardThroughFacebook ,
+//           Instagram: sourceData.heardThroughInstagram,
+//           Mastodon: sourceData.heardThroughMastodon ,
+//           Newsletter: sourceData.heardThroughNewsletter,
+//           Web: sourceData.heardThroughWeb ,
+//           Signs: sourceData.heardThroughSigns,
+//           Other: sourceData.heardThroughOther,
+//         },
+//       ]);
+//     } else {
+//     setCollumData([
+//       {
+//         Twitter: 0,
+//         Facebook: 0,
+//         Instagram: 0,
+//         Mastodon: 0,
+//         Newsletter: 0,
+//         Web: 0,
+//         Signs: 0,
+//         Other: 0,
+//       },
+//     ]);
+//   }
+//   setLoading(false);
+//   console.log("collums",totals)
+// }, [data, totals]);
 
 
 if (loading) {

@@ -4,7 +4,7 @@ import { CreateEventsDto } from './dto/create-events.dto';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Events } from './entities/event.entity';
-import { FindManyOptions, Repository } from 'typeorm';
+import { FindManyOptions, MoreThanOrEqual, Repository } from 'typeorm';
 
   @Injectable()
   export class EventsService {
@@ -28,5 +28,59 @@ import { FindManyOptions, Repository } from 'typeorm';
   async findOne(title: string): Promise <Events> {
     return this.eventsRepository.findOneBy({ title });
   }
+  async filterByLastThreeMonths(): Promise<Events[]> {
+    const currentDate = new Date();
+    const threeMonthsAgo = new Date();
+    threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
 
+    return this.eventsRepository.find({
+      where: {
+        startDate: MoreThanOrEqual(threeMonthsAgo),
+      },
+    });
+  }
+  async filterByLastSixMonths(): Promise<Events[]> {
+    const currentDate = new Date();
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(currentDate.getMonth() - 6);
+
+    return this.eventsRepository.find({
+      where: {
+        startDate: MoreThanOrEqual(sixMonthsAgo),
+      },
+    });
+  }
+
+  async filterByLastYear(): Promise<Events[]> {
+    const currentDate = new Date();
+    const lastYear = new Date();
+    lastYear.setFullYear(currentDate.getFullYear() - 1);
+
+    return this.eventsRepository.find({
+      where: {
+        startDate: MoreThanOrEqual(lastYear),
+      },
+    });
+  }
+  async filterByDateRange(startDate:Date, endDate:string): Promise<Events[]> {
+
+  
+    // Realizar la consulta con MoreThanOrEqual
+    return await this.eventsRepository.find({
+      where: {
+        startDate: MoreThanOrEqual(new Date(startDate)),
+        endDate: MoreThanOrEqual(new Date(endDate)),
+      },
+    });
+  }
+  async findAllEvents(): Promise<Events[]> {
+    return await this.eventsRepository.find();
+  }
+  async filterByStartDate(startDate: Date): Promise<Events[]> {
+    return await this.eventsRepository.find({
+      where: {
+        startDate: MoreThanOrEqual(startDate),
+      },
+    });
+  }
   }

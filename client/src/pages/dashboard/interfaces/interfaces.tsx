@@ -22,12 +22,11 @@ export type EventsList = {
     heardThroughSigns: number;
     heardThroughOther: number;
   }
-
 export interface DataProps{
     data: EventsList;
     title?: string;
-    initialTotals: EventsList;
-    onTotalsChange: (newTotals: EventsList) => void;
+    initialTotals?: EventsList;
+    onTotalsChange?: (newTotals: EventsList) => void;
     totals: EventsList;
 }
 

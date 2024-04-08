@@ -1,13 +1,8 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import { DataProps } from "./interfaces/interfaces";
+import { PieData } from "./interfaces/interfaces";
 
-interface PieData {
-  Homes: number | undefined;
-  Dones: number | undefined;
-  NoBinaries: number | undefined;
-  NoResponde: number | undefined;
-}
 
 const CakeChart = ({ data }: DataProps) => {
   const chartRef = useRef(null);

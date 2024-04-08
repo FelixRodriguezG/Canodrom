@@ -22,7 +22,7 @@ export type EventsList = {
     heardThroughSigns: number;
     heardThroughOther: number;
   }
-export interface DataProps{
+  export interface DataProps{
     data: EventsList;
     title?: string;
     initialTotals?: EventsList;
@@ -39,4 +39,10 @@ export interface EventData {
   Web: number | undefined;
   Signs: number | undefined;
   Other: number | undefined;
+}
+export interface PieData {
+  Homes: number | undefined;
+  Dones: number | undefined;
+  NoBinaries: number | undefined;
+  NoResponde: number | undefined;
 }

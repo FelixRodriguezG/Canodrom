@@ -7,7 +7,6 @@ import { fetchActivities } from "../../api/Api";
 import { EventsList } from "./interfaces/interfaces";
 
 const Dashboard = () => {
-  const [selectedActivity, setSelectedActivity] = useState<EventsList | null>(null);
   const initialTotals: EventsList = {
     attendees: 0,
     femaleAttendees: 0,
@@ -23,8 +22,8 @@ const Dashboard = () => {
     heardThroughSigns: 0,
     heardThroughOther: 0,
   };
-
-  const [activities, setActivities] = useState<EventsList[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<EventsList>(initialTotals);
+  const [_activities, setActivities] = useState<EventsList[]>([]);
   const [totals, setTotals] = useState<EventsList>(initialTotals);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const Dashboard = () => {
       try {
         const fetchedActivities = await fetchActivities();
         setActivities(fetchedActivities);
-        setSelectedActivity(fetchedActivities[0] || null);
+        setSelectedActivity(fetchedActivities[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -55,9 +54,9 @@ const Dashboard = () => {
       <main className="flex flex-col min-h-[800px] mx-auto py-10 sm:px-0">
         <div className="flex flex-col justify-between items-center  gap-3 mx-10">
           <div className="flex justify-around  gap-6 items-center">
-            <CakeChart title="Tipus d'activitat" data={selectedActivity} />
-            <CakeChart title="Temàtica" data={selectedActivity} />
-            <CakeChart title="Asistencia" data={selectedActivity} />
+            <CakeChart title="Tipus d'activitat" data={selectedActivity} totals={totals}/>
+            <CakeChart title="Temàtica" data={selectedActivity} totals={totals}/>
+            <CakeChart title="Asistencia" data={selectedActivity} totals={totals}/>
             <CollumsGraph data={selectedActivity} totals={totals} />
           </div>
           <div>

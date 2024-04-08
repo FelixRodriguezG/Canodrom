@@ -41,8 +41,8 @@ export interface EventData {
   Other: number | undefined;
 }
 export interface PieData {
-  Homes: number | undefined;
-  Dones: number | undefined;
-  NoBinaries: number | undefined;
-  NoResponde: number | undefined;
+  Homes: number ;
+  Dones: number ;
+  NoBinaries: number ;
+  NoResponde: number ;
 }

@@ -1,24 +1,52 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { DataProps } from "./interfaces/interfaces";
-import { PieData } from "./interfaces/interfaces";
 
+interface PieData {
+  Homes: number | undefined;
+  Dones: number | undefined;
+  NoBinaries: number | undefined;
+  NoResponde: number | undefined;
+}
 
-const CakeChart = ({ data }: DataProps) => {
+const CakeChart = ({ data,totals, title }: DataProps) => {
+  console.log("Title:", title);
+  console.log("Data:", data);
+  console.log("Totals:", totals);
   const chartRef = useRef(null);
+  const [sourceData, setSourceData] = useState(totals);
+  const [prevData, setPrevData] = useState(data);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    if (data !== prevData) {
+      setSourceData(data);
+      setPrevData(data);
+    } else if (totals) {
+      setSourceData(totals);
+    }
+  }, [data, totals]);
 
   useEffect(() => {
-    if (data) {
+    if (sourceData && chartRef.current) {
       const pieData: PieData = {
-        Homes: data.maleAttendees || 0,
-        Dones: data.femaleAttendees || 0,
-        NoBinaries: data.nonBinaryAttendees || 0,
-        NoResponde: data.undisclosedAttendees || 0,
+        Homes: sourceData.maleAttendees,
+        Dones: sourceData.femaleAttendees,
+        NoBinaries: sourceData.nonBinaryAttendees,
+        NoResponde: sourceData.undisclosedAttendees,
       };
 
       const myChart = echarts.init(chartRef.current);
 
       const option = {
+        title: {
+          text: title,
+          left: "center",
+          top: 20,
+          textStyle: {
+            color: "#000",
+          },
+        },
         tooltip: {
           trigger: "item",
         },
@@ -79,12 +107,15 @@ const CakeChart = ({ data }: DataProps) => {
       };
 
       myChart.setOption(option);
-
       return () => {
         myChart.dispose();
       };
     }
-  }, [data]);
+    setLoading(false);
+  }, [sourceData]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div

@@ -3,13 +3,11 @@ import DataTablePage from "./dataTablePage";
 import { Header } from "@/components/Header";
 import CakeChart from "./CakeGraph";
 import CollumsGraph from "./CollumsGraph";
-import { fetchActivities } from "./Api";
+import { fetchActivities } from "../../api/Api";
 import { EventsList } from "./interfaces/interfaces";
 
 const Dashboard = () => {
-  const [selectedActivity, setSelectedActivity] = useState<EventsList | null>(
-    null
-  );
+  const [selectedActivity, setSelectedActivity] = useState<EventsList | null>(null);
   const initialTotals: EventsList = {
     attendees: 0,
     femaleAttendees: 0,
@@ -24,12 +22,10 @@ const Dashboard = () => {
     heardThroughWeb: 0,
     heardThroughSigns: 0,
     heardThroughOther: 0,
-  }
+  };
 
   const [activities, setActivities] = useState<EventsList[]>([]);
-  const [totals, setTotals] = useState<EventsList>(
-    initialTotals
-  );
+  const [totals, setTotals] = useState<EventsList>(initialTotals);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +46,7 @@ const Dashboard = () => {
   };
   const handleTotalsChange = (newTotals: EventsList) => {
     setTotals(newTotals);
-    console.log("New Totals:", totals)
+    console.log("New Totals:", totals);
   };
 
   return (
@@ -62,22 +58,14 @@ const Dashboard = () => {
             <CakeChart title="Tipus d'activitat" data={selectedActivity} />
             <CakeChart title="Temàtica" data={selectedActivity} />
             <CakeChart title="Asistencia" data={selectedActivity} />
-            <CollumsGraph 
-            data={selectedActivity}
-            totals={totals} />
+            <CollumsGraph data={selectedActivity} totals={totals} />
           </div>
           <div>
-            <DataTablePage onRowClick={handleActivitySelected} onTotalschange={handleTotalsChange} initialTotals={initialTotals}/>
-            <div className="flex justify-center gap-6">
-              <CakeChart
-                title="Asistencia"
-                data={selectedActivity || activities[0]} 
-              />
-              <CollumsGraph
-                title="Inscripcions"
-                data={selectedActivity || activities[0]} 
-              />
-            </div>
+            <DataTablePage
+              onRowClick={handleActivitySelected}
+              onTotalschange={handleTotalsChange}
+              initialTotals={initialTotals}
+            />
           </div>
         </div>
       </main>

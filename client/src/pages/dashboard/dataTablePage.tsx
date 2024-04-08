@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useState } from "react";
-import { columns } from "../../components/dataTable/columns"
-import { DataTable } from "../../components/dataTable/dataTable"
-import { fetchActivities } from "./Api";
+import { columns } from "../../components/dataTable/columns";
+import { DataTable } from "../../components/dataTable/dataTable";
+import { fetchActivities } from "../../api/Api";
 import { EventsList } from "./interfaces/interfaces";
 
 interface DataTablePageContentProps {
@@ -10,7 +10,11 @@ interface DataTablePageContentProps {
   initialTotals: EventsList;
 }
 
-const DataTablePageContent = ({ onRowClick, onTotalschange, initialTotals }: DataTablePageContentProps) => {
+const DataTablePageContent = ({
+  onRowClick,
+  onTotalschange,
+  initialTotals,
+}: DataTablePageContentProps) => {
   const [data, setData] = useState<EventsList[]>([]);
 
   useEffect(() => {
@@ -28,8 +32,13 @@ const DataTablePageContent = ({ onRowClick, onTotalschange, initialTotals }: Dat
 
   return (
     <div>
-      <DataTable columns={columns} data={data} onRowClick={onRowClick} onTotalschange={onTotalschange} initialTotals={initialTotals}/>
-      
+      <DataTable
+        columns={columns}
+        data={data}
+        onRowClick={onRowClick}
+        onTotalschange={onTotalschange}
+        initialTotals={initialTotals}
+      />
     </div>
   );
 };
@@ -40,10 +49,18 @@ interface DataTablePageProps {
   initialTotals: EventsList; // Añade esta línea
 }
 
-const DataTablePage = ({ onRowClick, onTotalschange, initialTotals }: DataTablePageProps) => {
+const DataTablePage = ({
+  onRowClick,
+  onTotalschange,
+  initialTotals,
+}: DataTablePageProps) => {
   return (
     <Suspense fallback={<div>Cargando datos...</div>}>
-      <DataTablePageContent onRowClick={onRowClick} onTotalschange={onTotalschange} initialTotals={initialTotals} /> 
+      <DataTablePageContent
+        onRowClick={onRowClick}
+        onTotalschange={onTotalschange}
+        initialTotals={initialTotals}
+      />
     </Suspense>
   );
 };

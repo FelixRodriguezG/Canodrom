@@ -39,48 +39,6 @@ console.log("sourceData",sourceData)
   }, [sourceData]);
   
   
-  
-  
-  
-  
-//   useEffect(() => {
-//     let sourceData = data;
-//     if (!data && totals) {
-//       sourceData = totals;
-//     }
-//     if (sourceData) {
-//       console.log("ENTRA?",sourceData)
-//       setCollumData([
-//         {
-//           Twitter: sourceData.heardThroughTwitter ,
-//           Facebook: sourceData.heardThroughFacebook ,
-//           Instagram: sourceData.heardThroughInstagram,
-//           Mastodon: sourceData.heardThroughMastodon ,
-//           Newsletter: sourceData.heardThroughNewsletter,
-//           Web: sourceData.heardThroughWeb ,
-//           Signs: sourceData.heardThroughSigns,
-//           Other: sourceData.heardThroughOther,
-//         },
-//       ]);
-//     } else {
-//     setCollumData([
-//       {
-//         Twitter: 0,
-//         Facebook: 0,
-//         Instagram: 0,
-//         Mastodon: 0,
-//         Newsletter: 0,
-//         Web: 0,
-//         Signs: 0,
-//         Other: 0,
-//       },
-//     ]);
-//   }
-//   setLoading(false);
-//   console.log("collums",totals)
-// }, [data, totals]);
-
-
 if (loading) {
     return <div>Loading...</div>;
   }

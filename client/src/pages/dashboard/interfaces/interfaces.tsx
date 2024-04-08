@@ -26,11 +26,9 @@ export type EventsList = {
 export interface DataProps{
     data: EventsList;
     title?: string;
-    initialTotals?: EventsList;
-    onTotalsChange?: (newTotals: EventsList) => void;
+    initialTotals: EventsList;
+    onTotalsChange: (newTotals: EventsList) => void;
     totals: EventsList;
-    
-  
 }
 
 export interface EventData {

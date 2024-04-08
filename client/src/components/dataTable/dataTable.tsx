@@ -40,10 +40,14 @@ export function DataTable<TData extends EventsList, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [filterType, setFilterType] = useState("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [tableData, setTableData] = useState<TData[]>(data);
   const [totals, setTotals] = useState<EventsList>(initialTotals)
 
   const table = useReactTable({
-    data,
+    data: tableData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
@@ -56,6 +60,58 @@ export function DataTable<TData extends EventsList, TValue>({
     },
   });
   
+  const fetchData = async (endpoint: string) => {
+    try {
+      const response = await fetch(endpoint);
+      const newData = await response.json();
+      setTableData(newData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  
+  const handleFilterTypeChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedFilterType = event.target.value;
+    setFilterType(selectedFilterType);
+
+    let endpoint = "";
+    switch (selectedFilterType) {
+      case "last-three-months":
+        endpoint = "http://localhost:3000/events/filter/last-three-months";
+        break;
+      case "last-six-months":
+        endpoint = "http://localhost:3000/events/filter/last-six-months";
+        break;
+      case "last-year":
+        endpoint = "http://localhost:3000/events/filter/last-year";
+        break;
+      case "all-events":
+        endpoint = "http://localhost:3000/events/filter/all-events";
+        break;
+      default:
+        break;
+    }
+
+    if (endpoint) {
+      await fetchData(endpoint);
+    }
+  };
+  const handleFilterByDateRange = async () => {
+    if (!startDate || !endDate) {
+      console.error("Por favor selecciona las fechas de inicio y fin.");
+      return;
+    }
+
+    const endpoint = `http://localhost:3000/events/filter/by-date-range?startDate=${startDate}&endDate=${endDate}`;
+    
+    await fetchData(endpoint);
+  };
+
+
+
+
 
   useEffect(() => {
     const calculateTotals = () => {
@@ -94,7 +150,7 @@ export function DataTable<TData extends EventsList, TValue>({
   return (
     <>
       <div className="rounded-md border  border-gray-300 w-[98vw]">
-        <div className="flex items-center p-4">
+      <div className="flex items-center p-4">
           <Input
             placeholder="Cerca títol"
             value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -103,7 +159,7 @@ export function DataTable<TData extends EventsList, TValue>({
             }
             className="max-w-sm mr-4"
           />
-                    <Input
+          <Input
             placeholder="Cerca temàtica"
             value={(table.getColumn("theme")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
@@ -111,7 +167,7 @@ export function DataTable<TData extends EventsList, TValue>({
             }
             className="max-w-sm"
           />
-                              <Input
+          <Input
             placeholder="Cerca tipus d'activitat"
             value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
@@ -119,6 +175,30 @@ export function DataTable<TData extends EventsList, TValue>({
             }
             className="max-w-sm mx-4"
           />
+          <select
+            value={filterType}
+            onChange={handleFilterTypeChange}
+            className="form-select max-w-sm"
+          >
+            <option value="">Selecciona Eventos</option>
+            <option value="all-events">Todos los eventos</option>
+            <option value="last-three-months">Últimos tres meses</option>
+            <option value="last-six-months">Últimos seis meses</option>
+            <option value="last-year">Último año</option>
+          </select>
+          <input
+            type="date"
+            value={startDate}
+            onChange={(event) => setStartDate(event.target.value)}
+            className="form-select max-w-sm"
+          />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(event) => setEndDate(event.target.value)}
+            className="form-select max-w-sm"
+          />
+          <button onClick={handleFilterByDateRange}>Filtrar por rango de fecha</button>
         </div>
         <ScrollArea className="h-[500px] rounded-md border p-4">
         <Table className="shadow-xl">

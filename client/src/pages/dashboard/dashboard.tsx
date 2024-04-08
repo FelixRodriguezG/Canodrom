@@ -60,12 +60,12 @@ const Dashboard = () => {
   return (
     <div>
       <Header />
-      <main className="flex flex-col min-h-[800px] mx-auto py-10 sm:px-0">
-        <div className="flex flex-col justify-between items-center  gap-3 mx-10">
-          <div className="flex justify-around  gap-6 items-center">
+      <main className="flex flex-col min-h-[800px] w-[95vw] mx-auto py-10 sm:px-0">
+        <div className="flex flex-col w-full justify-between items-center ">
+          <div className="flex gap-6 pb-6 items-">
             <CakeChart3 data={themeCounts} title="Temàtica"  themes={themeCounts}/>
             <CakeChart2 title="Tipus d'activitat" data={typeCounts} types={typeCounts}themes={themeCounts}/>
-            <CakeChart title="Assistencia'" data={selectedActivity} totals={totals} types={typeCounts} themes={themeCounts}/>
+            <CakeChart title="Assistencia'" data={selectedActivity} totals={totals} initialTotals={initialTotals} themes={themeCounts}/>
             <CollumsGraph data={selectedActivity} totals={totals}/>
           </div>
           <div>

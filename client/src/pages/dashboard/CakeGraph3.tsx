@@ -2,13 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { DataProps, EventsList } from "./interfaces/interfaces";
 
-interface PieData {
-  Homes: number;
-  Dones: number;
-  NoBinaries: number;
-  NoResponde: number;
-  [key: string]: number;
-}
+
 
 const CakeChart3 = ({ themes, title }: DataProps) => {
   

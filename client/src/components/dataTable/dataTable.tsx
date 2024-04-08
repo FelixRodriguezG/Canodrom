@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState, useEffect, } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import { EventsList } from "@/pages/dashboard/interfaces/interfaces";
@@ -50,7 +50,9 @@ export function DataTable<TData extends EventsList, TValue>({
   const [tableData, setTableData] = useState<TData[]>(data);
   const [_totals, setTotals] = useState<EventsList>(initialTotals);
   const [_typeCounts, setTypeCounts] = useState<{ [key: string]: number }>({});
-  const [_themeCounts, setThemeCounts] = useState<{ [key: string]: number }>({})
+  const [_themeCounts, setThemeCounts] = useState<{ [key: string]: number }>(
+    {}
+  );
 
   const table = useReactTable({
     data: tableData,
@@ -126,8 +128,8 @@ export function DataTable<TData extends EventsList, TValue>({
       }
       return acc;
     }, {} as { [key: string]: number });
-  
-    console.log('contadortemas',themeCounts);
+
+    console.log("contadortemas", themeCounts);
   }, [table.getRowModel().rows]);
 
   useEffect(() => {
@@ -155,7 +157,6 @@ export function DataTable<TData extends EventsList, TValue>({
     onTotalschange(newTotals);
   }, [table.getRowModel().rows]);
 
-
   useEffect(() => {
     const calculateThemeCounts = () => {
       const themeCounts = table.getRowModel().rows.reduce((acc, row) => {
@@ -171,7 +172,7 @@ export function DataTable<TData extends EventsList, TValue>({
       }, {} as { [key: string]: number });
       return themeCounts;
     };
-  
+
     const newThemeCounts = calculateThemeCounts();
     setThemeCounts(newThemeCounts);
     onThemeCountsChange(newThemeCounts);
@@ -192,71 +193,72 @@ export function DataTable<TData extends EventsList, TValue>({
       }, {} as { [key: string]: number });
       return typeCounts;
     };
-  
+
     const newTypeCounts = calculateTypeCounts();
     setTypeCounts(newTypeCounts);
     onTypeCountsChange(newTypeCounts);
   }, [table.getRowModel().rows]);
 
-
-
-
-
   return (
     <>
-      <div className="rounded-md border  border-gray-300 w-[98vw]">
-        <div className="flex items-center p-4">
-          <Input
-            placeholder="Cerca títol"
-            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("title")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm mr-4"
-          />
-          <Input
-            placeholder="Cerca temàtica"
-            value={(table.getColumn("theme")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("theme")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
-          <Input
-            placeholder="Cerca tipus d'activitat"
-            value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("type")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm mx-4"
-          />
-          <select
-            value={filterType}
-            onChange={handleFilterTypeChange}
-            className="form-select max-w-sm"
-          >
-            <option value="">Selecciona Eventos</option>
-            <option value="all-events">Todos los eventos</option>
-            <option value="last-three-months">Últimos tres meses</option>
-            <option value="last-six-months">Últimos seis meses</option>
-            <option value="last-year">Último año</option>
-          </select>
-          <input
-            type="date"
-            value={startDate}
-            onChange={(event) => setStartDate(event.target.value)}
-            className="form-select max-w-sm"
-          />
-          <input
-            type="date"
-            value={endDate}
-            onChange={(event) => setEndDate(event.target.value)}
-            className="form-select max-w-sm"
-          />
-          <button onClick={handleFilterByDateRange}>
-            Filtrar por rango de fecha
-          </button>
-        </div>
+      <div className="rounded-md border shadow-lg border-gray-300 w-[93vw]">
+      <div className="flex flex-col md:flex-row md:justify-between md:px-4 items-center p-4 space-y-4 md:space-y-0 md:space-x-4">
+  <Input
+    placeholder="Cerca títol"
+    value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+    onChange={(event) =>
+      table.getColumn("title")?.setFilterValue(event.target.value)
+    }
+    className="w-full md:w-1/4 md:max-w-sm mb-4 md:mb-0"
+  />
+  <Input
+    placeholder="Cerca temàtica"
+    value={(table.getColumn("theme")?.getFilterValue() as string) ?? ""}
+    onChange={(event) =>
+      table.getColumn("theme")?.setFilterValue(event.target.value)
+    }
+    className="w-full md:w-1/4 md:max-w-sm mb-4 md:mb-0"
+  />
+  <Input
+    placeholder="Cerca tipus d'activitat"
+    value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
+    onChange={(event) =>
+      table.getColumn("type")?.setFilterValue(event.target.value)
+    }
+    className="w-full md:w-1/4 md:max-w-sm mb-4 md:mb-0"
+  />
+  <select
+    value={filterType}
+    onChange={handleFilterTypeChange}
+    className="form-select w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
+  >
+    <option value="">Sel·lecció </option>
+    <option value="all-events">Todos los eventos</option>
+    <option value="last-three-months">Últimos tres meses</option>
+    <option value="last-six-months">Últimos seis meses</option>
+    <option value="last-year">Último año</option>
+  </select>
+  <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm md:text-base">
+    <input
+      type="date"
+      value={startDate}
+      onChange={(event) => setStartDate(event.target.value)}
+      className="form-select w-full md:w-1/3 md:max-w-sm mb-4 md:mb-0"
+    />
+    <input
+      type="date"
+      value={endDate}
+      onChange={(event) => setEndDate(event.target.value)}
+      className="form-select w-full md:w-1/3 bg- md:max-w-sm mb-4 md:mb-0"
+    />
+    <button
+      className="w-full md:w-1/3 border rounded-md bg-slate-100 hover:bg-[#46FCD6] text-sm md:text-base transition-colors"
+      onClick={handleFilterByDateRange}
+    >
+      Filtre per data
+    </button>
+  </div>
+</div>
         <ScrollArea className="h-[500px] rounded-md border p-4">
           <Table className="shadow-xl">
             <TableHeader>

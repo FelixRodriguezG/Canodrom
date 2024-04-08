@@ -9,10 +9,10 @@ interface PieData {
   NoResponde: number | undefined;
 }
 
-const CakeChart = ({ data,totals, title }: DataProps) => {
+const CakeChart = ({ data,totals,initialTotals, title }: DataProps) => {
 
   const chartRef = useRef(null);
-  const [sourceData, setSourceData] = useState(totals || {});
+  const [sourceData, setSourceData] = useState(initialTotals);
   const [prevData, setPrevData] = useState(data);
   const [loading, setLoading] = useState(true);
   

@@ -2,15 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { DataProps, EventsList } from "./interfaces/interfaces";
 
-interface PieData {
-  Homes: number;
-  Dones: number;
-  NoBinaries: number;
-  NoResponde: number;
-  [key: string]: number;
-}
 
-const CakeChart3 = ({ types, title }: DataProps) => {
+
+const CakeChart2 = ({ types, title }: DataProps) => {
   
   console.log("types",types)
  
@@ -110,4 +104,4 @@ const CakeChart3 = ({ types, title }: DataProps) => {
   );
 };
 
-export default CakeChart3;
+export default CakeChart2;

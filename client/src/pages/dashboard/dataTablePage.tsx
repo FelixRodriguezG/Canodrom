@@ -4,17 +4,15 @@ import { DataTable } from "../../components/dataTable/dataTable";
 import { fetchActivities } from "../../api/Api";
 import { EventsList } from "./interfaces/interfaces";
 
-interface DataTablePageContentProps {
-  onRowClick: (events: EventsList) => void;
-  onTotalschange: (newTotals: EventsList) => void;
-  initialTotals: EventsList;
-}
+
 
 const DataTablePageContent = ({
   onRowClick,
   onTotalschange,
+  onTypeCountsChange,
+  onThemeCountsChange,
   initialTotals,
-}: DataTablePageContentProps) => {
+}: DataTablePageProps) => {
   const [data, setData] = useState<EventsList[]>([]);
 
   useEffect(() => {
@@ -37,22 +35,28 @@ const DataTablePageContent = ({
         data={data}
         onRowClick={onRowClick}
         onTotalschange={onTotalschange}
+        onTypeCountsChange={onTypeCountsChange}
+        onThemeCountsChange={onThemeCountsChange}
         initialTotals={initialTotals}
       />
     </div>
   );
 };
 
-interface DataTablePageProps {
-  onRowClick: (activity: EventsList) => void;
+export interface DataTablePageProps {
+  onRowClick: (data: EventsList) => void;
   onTotalschange: (newTotals: EventsList) => void;
-  initialTotals: EventsList; // Añade esta línea
+  initialTotals: EventsList;
+  onTypeCountsChange: (newTypeCounts: any) => void;
+  onThemeCountsChange: (newThemeCounts: any) => void;
 }
 
 const DataTablePage = ({
   onRowClick,
   onTotalschange,
   initialTotals,
+  onTypeCountsChange, 
+  onThemeCountsChange,
 }: DataTablePageProps) => {
   return (
     <Suspense fallback={<div>Cargando datos...</div>}>
@@ -60,6 +64,8 @@ const DataTablePage = ({
         onRowClick={onRowClick}
         onTotalschange={onTotalschange}
         initialTotals={initialTotals}
+        onTypeCountsChange={onTypeCountsChange} // Cambia handleTypeCountsChange a onTypeCountsChange
+        onThemeCountsChange={onThemeCountsChange} 
       />
     </Suspense>
   );

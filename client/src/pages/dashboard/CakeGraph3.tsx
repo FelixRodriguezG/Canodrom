@@ -3,36 +3,40 @@ import * as echarts from "echarts";
 import { DataProps, EventsList } from "./interfaces/interfaces";
 
 interface PieData {
-  Homes: number | undefined;
-  Dones: number | undefined;
-  NoBinaries: number | undefined;
-  NoResponde: number | undefined;
+  Homes: number;
+  Dones: number;
+  NoBinaries: number;
+  NoResponde: number;
+  [key: string]: number;
 }
 
-const CakeChart = ({ data,totals, title }: DataProps) => {
-
+const CakeChart3 = ({ themes, title }: DataProps) => {
+  
+  console.log("themes",themes)
+ 
   const chartRef = useRef(null);
-  const [sourceData, setSourceData] = useState(totals || {});
-  const [prevData, setPrevData] = useState(data);
+  const [sourceData, setSourceData] = useState(themes);
+  const [prevData, setPrevData] = useState(themes);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    if (data !== prevData) {
-      setSourceData(data as EventsList);
-      setPrevData(data);
-    } else if (totals) {
-      setSourceData(totals);
+    if (themes !== prevData) {
+      setSourceData(themes as EventsList);
+      setPrevData(themes);
+    } else if (themes) {
+      setSourceData(themes);
     }
-  }, [data, totals]);
+  }, [themes]);
 
   useEffect(() => {
     if (sourceData && chartRef.current) {
-      const pieData: PieData = {
-        Homes: sourceData.maleAttendees,
-        Dones: sourceData.femaleAttendees,
-        NoBinaries: sourceData.nonBinaryAttendees,
-        NoResponde: sourceData.undisclosedAttendees,
-      };
+      const pieDataArray: { name: string; value: number; }[] = Object.entries(sourceData).map(([key, value]) => ({
+        name: key,
+        value: value,
+      }));
+  
+      
+  
 
       const myChart = echarts.init(chartRef.current);
 
@@ -55,7 +59,7 @@ const CakeChart = ({ data,totals, title }: DataProps) => {
         },
         series: [
           {
-            name: "Gènere",
+            name: title,
             type: "pie",
             radius: ["40%", "70%"],
             avoidLabelOverlap: false,
@@ -78,28 +82,10 @@ const CakeChart = ({ data,totals, title }: DataProps) => {
             labelLine: {
               show: false,
             },
-            data: [
-              {
-                value: pieData.Homes,
-                name: "Homes",
-                itemStyle: { color: "#FF9F40" },
-              },
-              {
-                value: pieData.Dones,
-                name: "Dones",
-                itemStyle: { color: "#FFCD56" },
-              },
-              {
-                value: pieData.NoBinaries,
-                name: "No binaris",
-                itemStyle: { color: "#FFB1C1" },
-              },
-              {
-                value: pieData.NoResponde,
-                name: "No responde",
-                itemStyle: { color: "#c8ffb1" },
-              },
-            ],
+            data: pieDataArray.map((data) => ({
+              value: data.value,
+              name: data.name,
+            })),
           },
         ],
       };
@@ -109,6 +95,7 @@ const CakeChart = ({ data,totals, title }: DataProps) => {
         myChart.dispose();
       };
     }
+    console.log(sourceData)
     setLoading(false);
   }, [sourceData]);
   if (loading) {
@@ -123,4 +110,4 @@ const CakeChart = ({ data,totals, title }: DataProps) => {
   );
 };
 
-export default CakeChart;
+export default CakeChart3;

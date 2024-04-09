@@ -77,7 +77,7 @@ if (loading) {
         ],
         type: "bar",
         itemStyle: {
-          barBorderRadius: [10, 10, 0, 0], 
+          barBorderRadius: [10, 10, 0, 0],
           color: "#5470C6",
           showBackground: true,
           backgroundStyle: {
@@ -89,12 +89,14 @@ if (loading) {
     tooltip: {
       trigger: "axis",
       axisPointer: {
-        type: "shadow",
+        type: "none",
       },
-      formater: function (params) {
+      formatter: function (params) {
         return params[0].name + "<br/>" + params[0].value;
       },
-    }
+      borderColor: "#5470C6",
+      borderWidth: 1,
+    },
   };
 
   return (

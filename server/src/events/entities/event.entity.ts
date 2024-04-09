@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   Column,
   Entity,
@@ -9,48 +8,56 @@ import {
 export class Events {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  personInCharge: string;
   @Column({ unique: true })
   title: string;
   @Column()
-  startDate: Date;
+  startDate?: Date;
   @Column()
-  endDate: Date;
+  program?: string;
   @Column()
-  program: string;
+  repetition?: number;
   @Column()
-  repetition: number;
+  theme?: string;
   @Column()
-  theme: string;
+  type?: string;
   @Column()
-  type: string;
+  targetAudience?: string;
   @Column()
-  targetAudience: string;
+  Organizer?: string;
   @Column()
-  Organizer: string;
+  attendees?: number;
   @Column()
-  attendees: number;
+  femaleAttendees?: number;
   @Column()
-  femaleAttendees: number;
+  maleAttendees?: number;
   @Column()
-  maleAttendees: number;
+  nonBinaryAttendees?: number;
   @Column()
-  nonBinaryAttendees: number;
+  undisclosedAttendees?: number;
   @Column()
-  undisclosedAttendees: number;
+  heardThroughTwitter?: number;
   @Column()
-  heardThroughTwitter: number;
+  heardThroughFacebook?: number;
   @Column()
-  heardThroughFacebook: number;
+  heardThroughInstagram?: number;
   @Column()
-  heardThroughInstagram: number;
+  heardThroughMastodon?: number;
   @Column()
-  heardThroughMastodon: number;
+  heardThroughNewsletter?: number;
   @Column()
-  heardThroughNewsletter: number;
+  heardThroughWeb?: number;
   @Column()
-  heardThroughWeb: number;
+  heardThroughSigns?: number;
   @Column()
-  heardThroughSigns: number;
+  heardThroughOther?: number;
   @Column()
-  heardThroughOther: number;
+  children?: number;
+  @Column()
+  streaming?: string;
+  @Column()
+  notes?: string;
+  @Column()
+  endDate?: Date
 }

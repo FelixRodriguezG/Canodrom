@@ -6,24 +6,32 @@ import { Header } from "@/components/Header";
 import { Link } from "react-router-dom";
 
 export const INITIAL_FORM_DATA = {
-  responsable: "",
-  titulo: "",
-  programa: "",
-  tematica: "",
-  publico: "",
-  organizador: "",
-  fechaInicio: "",
-  tipusActivitat: "",
-  noSessions: "",
-  noAssistencia: "",
-  numAsistentes: "",
-  numHombres: "",
-  numMujeres: "",
-  numNN: "",
-  numNoBinari: "",
-  infantsAcompanados: "",
-  streaming: "",
-  notes: "",
+  personInCharge:"",
+  startDate:"",
+  title:"",
+  program: "",
+  repetition:"0",
+  theme: "",
+  type: "",
+  targetAudience: "",
+  Organizer: "",
+  attendees: 0,
+  femaleAttendees: 0,
+  maleAttendees: 0,
+  nonBinaryAttendees: 0,
+  undisclosedAttendees: 0,
+  heardThroughTwitter: 0,
+  heardThroughFacebook: 0,
+  heardThroughInstagram: 0,
+  heardThroughMastodon: 0,
+  heardThroughNewsletter: 0,
+  heardThroughWeb: 0,
+  heardThroughSigns: 0,
+  heardThroughOther: 0,
+  children:0,
+  streaming:"",
+  notes:"",
+  endDate:"",
 };
 export function Form() {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
@@ -32,7 +40,7 @@ export function Form() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/data/crear", {
+      const response = await fetch("http://localhost:3000/events/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,16 +76,37 @@ export function Form() {
           onSubmit={handleSubmit}
           className="flex flex-col p-10 gap-5 rounded-md border border-slate-300 w-[55%] bg-white"
         >
-          <h1 className="text-4xl text-[#ffffff] font-bold mb-5 text-center bg-purple-700 p-5 rounded-md">
+          <h1 className="text-4xl text-[#FFFFFF] font-bold mb-5 text-center bg-purple-700 p-5 rounded-md">
             Introdueix les dades de l'activitat
           </h1>
           <div className="flex flex-wrap gap-3">
+                <Label className="flex flex-col mt-5">
+              Responsable
+              <Input
+                type="text"
+                name="personInCharge"
+                value={formData.personInCharge}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-5">
+              Títol
+              <Input
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+                required
+              />
+            </Label>
             <Label className="flex flex-col mt-5">
               Data inici
               <Input
                 type="date"
-                name="fechaInicio"
-                value={formData.fechaInicio}
+                name="startDate"
+                value={formData.startDate}
                 onChange={handleChange}
                 className="bg-[#F5F5F5] mt-1"
               />
@@ -104,34 +133,12 @@ export function Form() {
                 className="bg-[#F5F5F5] mt-1"
               />
             </Label>
-            <Label className="flex flex-col mt-5">
-              Responsable
-              <Input
-                type="text"
-                name="responsable"
-                value={formData.responsable}
-                onChange={handleChange}
-                className="bg-[#F5F5F5] mt-1"
-                required
-              />
-            </Label>
-            <Label className="flex flex-col mt-5">
-              Títol
-              <Input
-                type="text"
-                name="titulo"
-                value={formData.titulo}
-                onChange={handleChange}
-                className="bg-[#F5F5F5] mt-1"
-                required
-              />
-            </Label>
             <Label className="flex flex-col mt-3">
               Programa
               <Input
                 type="text"
-                name="programa"
-                value={formData.programa}
+                name="program"
+                value={formData.program}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
@@ -140,8 +147,8 @@ export function Form() {
               Temàtica
               <Input
                 type="text"
-                name="tematica"
-                value={formData.tematica}
+                name="theme"
+                value={formData.theme}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
@@ -150,8 +157,8 @@ export function Form() {
               Públic
               <Input
                 type="text"
-                name="publico"
-                value={formData.publico}
+                name="targetAudience"
+                value={formData.targetAudience}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
@@ -160,8 +167,8 @@ export function Form() {
               Organitzador
               <Input
                 type="text"
-                name="organizador"
-                value={formData.organizador}
+                name="Organizer"
+                value={formData.Organizer}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
@@ -170,8 +177,8 @@ export function Form() {
               Tipus d'activitat
               <Input
                 type="text"
-                name="tipusActivitat"
-                value={formData.tipusActivitat}
+                name="type"
+                value={formData.type}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
@@ -180,38 +187,28 @@ export function Form() {
               Nº SESSIONS
               <Input
                 type="number"
-                name="noSessions"
-                value={formData.noSessions}
+                name="repetition"
+                value={formData.repetition}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
             <Label className="flex flex-col mt-3">
-              No Assistència
+              Assistents
               <Input
                 type="number"
-                name="noAssistencia"
-                value={formData.noAssistencia}
+                name="attendees"
+                value={formData.attendees}
                 onChange={handleChange}
                 className="bg-[#F5F5F5] mt-1"
-              />
-            </Label>
-            <Label className="flex flex-col mt-3">
-              Nº Asistentes
-              <Input
-                type="number"
-                name="numAsistentes"
-                value={formData.numAsistentes}
-                onChange={handleChange}
-                className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
             <Label className="flex flex-col mt-3">
               Nº Homes
               <Input
                 type="number"
-                name="numHombres"
-                value={formData.numHombres}
+                name="maleAttendees"
+                value={formData.maleAttendees}
                 onChange={handleChange}
                 className="bg-[#F5F5F5]  mt-1"
               />
@@ -220,18 +217,8 @@ export function Form() {
               Nº Dones
               <Input
                 type="number"
-                name="numMujeres"
-                value={formData.numMujeres}
-                onChange={handleChange}
-                className="bg-[#F5F5F5] mt-1"
-              />
-            </Label>
-            <Label className="flex flex-col mt-3">
-              Nº NN
-              <Input
-                type="number"
-                name="numNN"
-                value={formData.numNN}
+                name="femaleAttendees"
+                value={formData.femaleAttendees}
                 onChange={handleChange}
                 className="bg-[#F5F5F5] mt-1"
               />
@@ -240,8 +227,18 @@ export function Form() {
               Nº No-binari
               <Input
                 type="number"
-                name="numNoBinari"
-                value={formData.numNoBinari}
+                name="nonBinaryAttendees"
+                value={formData.nonBinaryAttendees}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+              Nº NC
+              <Input
+                type="number"
+                name="undisclosedAttendees"
+                value={formData.undisclosedAttendees}
                 onChange={handleChange}
                 className="bg-[#F5F5F5] mt-1"
               />
@@ -250,8 +247,8 @@ export function Form() {
               Infants que els acompanyen
               <Input
                 type="number"
-                name="infantsAcompanados"
-                value={formData.infantsAcompanados}
+                name="children"
+                value={formData.children}
                 onChange={handleChange}
                 className="bg-[#F5F5F5] mt-1"
               />

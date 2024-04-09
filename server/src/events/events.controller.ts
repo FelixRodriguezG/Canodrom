@@ -9,7 +9,7 @@ import { Moment } from 'moment';
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createEventDto: CreateEventsDto) {
     return this.eventsService.create(createEventDto);
   }

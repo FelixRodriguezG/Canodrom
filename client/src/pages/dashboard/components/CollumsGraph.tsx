@@ -84,6 +84,17 @@ const CollumsGraph = ({ data, totals }: DataProps) => {
         },
       },
     ],
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "none",
+      },
+      formatter: function (params) {
+        return params[0].name + "<br/>" + params[0].value;
+      },
+      borderColor: "#5470C6",
+      borderWidth: 1,
+    },
   };
 
   return (

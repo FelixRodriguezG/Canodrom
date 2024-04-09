@@ -60,24 +60,24 @@ export const Header = () => {
     <>
       <header className="bg-purple-700 p-4 flex w-full items-center justify-between">
         <img src="./Icon.svg" alt="logo" className="w-[240px]" />
-        <div className="flex gap-5 ">
-          <Link to="../form">
-            <img src="./fileSend.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+        <div className="flex gap-5">
+          <Link to="../form" className="flex items-center gap-1">
+            <img src="./formulari.svg" alt="logo" className="w-[15px] h-[12px] ml-6" />
+            <span className="font-semibold text-lg text-[#ffffff]">
               Formulari
             </span>
           </Link>
-          <Link to="../dashboard">
-            <img src="./dahboard1.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+          <Link to="../dashboard" className="flex items-center gap-1">
+            <img src="./dashboard.svg" alt="logo" className="w-[15px] h-[15px] ml-6" />
+            <span className="font-semibold text-lg text-[#f4f5f5]">
               Dashboard
             </span>
           </Link>
-          <button
+          <button className="flex items-center gap-1"
             onClick={() => fileInputRef.current && fileInputRef.current.click()}
           >
-            <img src="./upload.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+            <img src="/pujar.svg" alt="logo" className="w-[15px] h-[15px] ml-6" />
+            <span className="font-semibold text-lg text-[#ffffff]">
               Pujar Excel
             </span>
           </button>
@@ -88,17 +88,17 @@ export const Header = () => {
             style={{ display: "none" }}
             onChange={handleUpload}
           />{" "}
-          
-          <button onClick={handleDownload}>
-            <img src="./downloadl.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+          {/* Input oculto para subir archivos */}
+          <button className="flex items-center gap-1" onClick={handleDownload}>
+            <img src="./descarregar.svg" alt="logo" className="w-[15px] h-[15px] ml-6" />
+            <span className="font-semibold text-lg text-[#ffffff]">
               Descarregar
             </span>
           </button>
         </div>
-          
+        <Link to="/register" className="mr-[-220px] text-white block text-sm" > Registre d'un nou usuari</Link>
         <div>
-          <p className={`text-[#46FCD6] text-2xl `}>{"Benvingut/da " + data}</p>
+          <p className={`text-[#fdfdfd] text-xl `}>{"Benvingut/da " + data}</p>
           <button
             type="button"
             onClick={handleLogOut}

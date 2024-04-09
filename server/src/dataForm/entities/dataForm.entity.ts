@@ -5,7 +5,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class Data {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number =0;
 
   @Column({ length: 255 })
   responsable: string;

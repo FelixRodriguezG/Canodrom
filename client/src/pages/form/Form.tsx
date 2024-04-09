@@ -44,7 +44,7 @@ export function Form() {
       }
       setSuccessful("Enviat amb èxit");
       console.log("Datos enviados correctamente");
-      console.log(formData)
+      console.log(formData);
     } catch (error) {
       setError("Error en l'enviament de les dades.");
       console.error("Error:", error);
@@ -62,67 +62,70 @@ export function Form() {
   }, 3000);
   return (
     <div className=" bg-[#F5F5F5]">
-  <Header />
-  <div className="flex justify-center m-5">
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col p-10 gap-5 rounded-md border border-slate-300 w-[55%] bg-white"
-    >
-      <h1 className="text-4xl text-[#ffffff] font-bold mb-5 text-center bg-purple-700 p-5 rounded-md">
-      Introdueix les dades de l'activitat
-      </h1>
-      <div className="flex flex-wrap gap-3">
-        <Label className="flex flex-col mt-5">Data inici
-          <Input
-            type="date"
-            name="fechaInicio"
-            value={formData.fechaInicio}
-            onChange={handleChange}
-            className="bg-[#F5F5F5] mt-1"
-          />
-        </Label>
-        <Label className="flex flex-col flex-grow mt-5">Notes
-          <Input
-            type="text"
-            name="notes"
-            value={formData.notes}
-            onChange={handleChange}
-            className="flex-grow bg-[#F5F5F5] mt-1"
-          />
-        </Label>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        <Label className="flex flex-col mt-5">Streaming
-          <Input
-            type="text"
-            name="streaming"
-            value={formData.streaming}
-            onChange={handleChange}
-            className="bg-[#F5F5F5] mt-1"
-          />
-        </Label>
-        <Label className="flex flex-col mt-5">
-          Responsable
-          <Input
-            type="text"
-            name="responsable"
-            value={formData.responsable}
-            onChange={handleChange}
-            className="bg-[#F5F5F5] mt-1"
-            required
-          />
-        </Label>
-        <Label className="flex flex-col mt-5">
-          Títol
-          <Input
-            type="text"
-            name="titulo"
-            value={formData.titulo}
-            onChange={handleChange}
-            className="bg-[#F5F5F5] mt-1"
-            required
-          />
-        </Label>
+      <Header />
+      <div className="flex justify-center m-5">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col p-10 gap-5 rounded-md border border-slate-300 w-[55%] bg-white"
+        >
+          <h1 className="text-4xl text-[#ffffff] font-bold mb-5 text-center bg-purple-700 p-5 rounded-md">
+            Introdueix les dades de l'activitat
+          </h1>
+          <div className="flex flex-wrap gap-3">
+            <Label className="flex flex-col mt-5">
+              Data inici
+              <Input
+                type="date"
+                name="fechaInicio"
+                value={formData.fechaInicio}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col flex-grow mt-5">
+              Notes
+              <Input
+                type="text"
+                name="notes"
+                value={formData.notes}
+                onChange={handleChange}
+                className="flex-grow bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <Label className="flex flex-col mt-5">
+              Streaming
+              <Input
+                type="text"
+                name="streaming"
+                value={formData.streaming}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-5">
+              Responsable
+              <Input
+                type="text"
+                name="responsable"
+                value={formData.responsable}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+                required
+              />
+            </Label>
+            <Label className="flex flex-col mt-5">
+              Títol
+              <Input
+                type="text"
+                name="titulo"
+                value={formData.titulo}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+                required
+              />
+            </Label>
             <Label className="flex flex-col mt-3">
               Programa
               <Input
@@ -255,18 +258,20 @@ export function Form() {
             </Label>
           </div>
           {error && <div style={{ color: "red" }}>{error}</div>}
-      {Successful && <div style={{ color: "green" }}>{Successful}</div>}
-      <Button type="submit" className="rounded-full bg-[#46FCD6] mt-5 transition duration-300">
-        Enviar
-      </Button>
-      <div className="text-center bg-[#AE80FF] p-2 hover:bg-purple-700 hover:text-white rounded-full transition duration-300 ">
-        <Link to="../../dashboard" className="text-center ">
-          Tornar
-        </Link>
+          {Successful && <div style={{ color: "green" }}>{Successful}</div>}
+          <Button
+            type="submit"
+            className="rounded-full bg-[#46FCD6] mt-5 transition duration-300"
+          >
+            Enviar
+          </Button>
+          <div className="text-center bg-[#AE80FF] p-2 hover:bg-purple-700 hover:text-white rounded-full transition duration-300 ">
+            <Link to="../../dashboard" className="text-center ">
+              Tornar
+            </Link>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-</div>
+    </div>
   );
 }
-

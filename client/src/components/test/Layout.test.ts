@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import Header from './Header.tsx';
+import Header from '../Header.tsx';
 
 test('comprobar renderizado de rutas', () => {
   // Simula diferentes ubicaciones
@@ -8,8 +8,8 @@ test('comprobar renderizado de rutas', () => {
     { pathname: '/dashboard' },
     { pathname: '/otra-ruta' }
   ];
-// Función para determinar el valor de headerDisplay basado en la ubicación
-function determineHeaderDisplay(pathname: string): string {
+  // Función para determinar el valor de headerDisplay basado en la ubicación
+  function determineHeaderDisplay(pathname: string): string {
     if (pathname === '/') {
       return 'hidden';
     } else if (pathname === '/dashboard') {
@@ -18,7 +18,7 @@ function determineHeaderDisplay(pathname: string): string {
       return 'valor-predeterminado';
     }
   }
-  
+
   // Verifica el comportamiento del componente Header para cada ubicación
   locations.forEach(location => {
     const headerDisplay = determineHeaderDisplay(location.pathname);

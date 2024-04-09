@@ -6,7 +6,7 @@ import axios from "axios";
 export const Header = () => {
   const [_currentUser, setCurrentUser] = useContext(AuthContext);
   const navigate = useNavigate();
-  const fileInputRef = useRef(null); 
+  const fileInputRef = useRef(null);
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
@@ -25,7 +25,7 @@ export const Header = () => {
   const handleDownload = async () => {
     try {
       const response = await axios.get("http://localhost:3000/data/download", {
-        responseType: "blob", 
+        responseType: "blob",
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
@@ -38,7 +38,7 @@ export const Header = () => {
     }
   };
 
-  const handleUpload = async (event:any) => {
+  const handleUpload = async (event: any) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
@@ -98,10 +98,14 @@ export const Header = () => {
         </div>
         <div>
           <p className={`text-[#46FCD6] text-2xl `}>{"Benvingut/da " + data}</p>
-          <button type="button" onClick={handleLogOut} className="font-semibold">
+          <button
+            type="button"
+            onClick={handleLogOut}
+            className="font-semibold"
+          >
             Tancar Sessió
           </button>
-        </div>  
+        </div>
       </header>
     </>
   );

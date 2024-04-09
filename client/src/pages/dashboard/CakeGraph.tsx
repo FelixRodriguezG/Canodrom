@@ -93,12 +93,12 @@ const CakeChart = ({ data,totals,initialTotals, title }: DataProps) => {
               {
                 value: pieData.NoBinaries,
                 name: "No binaris",
-                itemStyle: { color: "#FFB1C1" },
+                itemStyle: { color: "#5470C6" },
               },
               {
                 value: pieData.NoResponde,
                 name: "No responde",
-                itemStyle: { color: "#c8ffb1" },
+                itemStyle: { color: "#91CC75" },
               },
             ],
           },

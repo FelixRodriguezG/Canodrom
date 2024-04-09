@@ -26,7 +26,7 @@ export type EventsList = {
   heardThroughOther: number;
 };
 export interface DataProps {
-  data?: EventsList | { [key: string]: number };
+  data: EventsList | { [key: string]: number };
   title?: string;
   initialTotals?: EventsList;
   onTotalsChange?: (newTotals: EventsList) => void;

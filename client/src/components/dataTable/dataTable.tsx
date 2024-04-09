@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import { EventsList } from "@/pages/dashboard/interfaces/interfaces";
-import { set } from "date-fns";
+
 
 export interface DataTableProps<TData extends EventsList, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -230,7 +230,7 @@ export function DataTable<TData extends EventsList, TValue>({
   <select
     value={filterType}
     onChange={handleFilterTypeChange}
-    className="form-select w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
+    className="form-select text-sm w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
   >
     <option value="">Sel·lecció </option>
     <option value="all-events">Tots als esdeveniments</option>
@@ -238,25 +238,21 @@ export function DataTable<TData extends EventsList, TValue>({
     <option value="last-six-months">Últims sis meses</option>
     <option value="last-year">Últim any</option>
   </select>
-  <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm md:text-base">
-  <input
-  type="date"
-  value={startDate}
-  onChange={(event) => setStartDate(event.target.value)}
-  className="form-select w-full md:w-1/3 md:max-w-sm mb-4 md:mb-0"
-  lang="es"
-  onFocus={(event) => event.target.lang = "es"}
-/>
-<input
-  type="date"
-  value={endDate}
-  onChange={(event) => setEndDate(event.target.value)}
-  className="form-select w-full md:w-1/3 bg- md:max-w-sm mb-4 md:mb-0"
-  lang="es"
-  onFocus={(event) => event.target.lang = "es"}
-/>
+  <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm ">
+    <input
+      type="date"
+      value={startDate}
+      onChange={(event) => setStartDate(event.target.value)}
+      className="form-select w-full md:w-1/3 md:max-w-sm mb-4 md:mb-0"
+    />
+    <input
+      type="date"
+      value={endDate}
+      onChange={(event) => setEndDate(event.target.value)}
+      className="form-select w-full md:w-1/3 bg- md:max-w-sm mb-4 md:mb-0"
+    />
     <button
-      className="w-full md:w-1/3 border rounded-md bg-slate-100 hover:bg-[#46FCD6] text-sm md:text-base transition-colors"
+      className="w-full md:w-1/3  border rounded-md bg-slate-100 hover:bg-[#46FCD6] text-sm  transition-colors"
       onClick={handleFilterByDateRange}
     >
       Filtre per data

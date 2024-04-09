@@ -1,12 +1,12 @@
-import React, { useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const Header = () => {
-  const [currentUser, setCurrentUser] = useContext(AuthContext);
+  const [_currentUser, setCurrentUser] = useContext(AuthContext);
   const navigate = useNavigate();
-  const fileInputRef = useRef(null); 
+  const fileInputRef = useRef(null);
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
@@ -25,7 +25,7 @@ export const Header = () => {
   const handleDownload = async () => {
     try {
       const response = await axios.get("http://localhost:3000/data/download", {
-        responseType: "blob", 
+        responseType: "blob",
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
@@ -38,7 +38,7 @@ export const Header = () => {
     }
   };
 
-  const handleUpload = async (event) => {
+  const handleUpload = async (event: any) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
@@ -58,7 +58,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="bg-purple-700 p-5 flex w-full items-center justify-between">
+      <header className="bg-purple-700 p-4 flex w-full items-center justify-between">
         <img src="./Icon.svg" alt="logo" className="w-[240px]" />
         <div className="flex gap-5">
           <Link to="../form" className="flex items-center gap-1">
@@ -97,11 +97,15 @@ export const Header = () => {
           </button>
         </div>
         <div>
-          <p className={`text-[#ffffff] text-2xl `}>{"Benvingut/da " + data}</p>
-          <button type="button" onClick={handleLogOut} className="font-semibold">
+          <p className={`text-[#fdfdfd] text-2xl `}>{"Benvingut/da " + data}</p>
+          <button
+            type="button"
+            onClick={handleLogOut}
+            className="font-semibold"
+          >
             Tancar Sessió
           </button>
-        </div>  
+        </div>
       </header>
     </>
   );

@@ -24,12 +24,13 @@ const Dashboard = () => {
     heardThroughSigns: 0,
     heardThroughOther: 0,
   };
-  
-  const [selectedActivity, setSelectedActivity] = useState<EventsList>(initialTotals);
+
+  const [selectedActivity, setSelectedActivity] =
+    useState<EventsList>(initialTotals);
   const [_activities, setActivities] = useState<EventsList[]>([]);
   const [totals, setTotals] = useState<EventsList>(initialTotals);
   const [typeCounts, setTypeCounts] = useState<{ [key: string]: number }>({});
-  const [themeCounts, setThemeCounts] = useState<{ [key: string]: number }>({})
+  const [themeCounts, setThemeCounts] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,10 +53,10 @@ const Dashboard = () => {
   };
   const handleTypeCountsChange = (newTypeCounts: any) => {
     setTypeCounts(newTypeCounts);
-  }
+  };
   const handleThemeCountsChange = (newThemeCounts: any) => {
     setThemeCounts(newThemeCounts);
-  }
+  };
 
   return (
     <div>
@@ -63,10 +64,25 @@ const Dashboard = () => {
       <main className="flex flex-col min-h-[800px] w-[95vw] mx-auto py-10 sm:px-0">
         <div className="flex flex-col w-full justify-between items-center ">
           <div className="flex gap-6 pb-6 items-">
-            <CakeChart3 data={themeCounts} title="Temàtica"  themes={themeCounts}/>
-            <CakeChart2 title="Tipus d'activitat" data={typeCounts} types={typeCounts}themes={themeCounts}/>
-            <CakeChart title="Assistencia" data={selectedActivity} totals={totals} initialTotals={initialTotals} themes={themeCounts}/>
-            <CollumsGraph data={selectedActivity} totals={totals}/>
+            <CakeChart3
+              data={themeCounts}
+              title="Temàtica"
+              themes={themeCounts}
+            />
+            <CakeChart2
+              title="Tipus d'activitat"
+              data={typeCounts}
+              types={typeCounts}
+              themes={themeCounts}
+            />
+            <CakeChart
+              title="Assistencia"
+              data={selectedActivity}
+              totals={totals}
+              initialTotals={initialTotals}
+              themes={themeCounts}
+            />
+            <CollumsGraph data={selectedActivity} totals={totals} />
           </div>
           <div>
             <DataTablePage

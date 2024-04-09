@@ -30,7 +30,7 @@ export const Header = () => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "tabla.xlsx"); // Nombre del archivo a descargar
+      link.setAttribute("download", "tabla.xlsx"); 
       document.body.appendChild(link);
       link.click();
     } catch (error) {
@@ -88,7 +88,7 @@ export const Header = () => {
             style={{ display: "none" }}
             onChange={handleUpload}
           />{" "}
-          {/* Input oculto para subir archivos */}
+          
           <button onClick={handleDownload}>
             <img src="./downloadl.svg" alt="logo" className="w-[40px] ml-6" />
             <span className="font-semibold text-lg text-[#46FCD6]">
@@ -96,6 +96,7 @@ export const Header = () => {
             </span>
           </button>
         </div>
+          
         <div>
           <p className={`text-[#46FCD6] text-2xl `}>{"Benvingut/da " + data}</p>
           <button

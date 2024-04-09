@@ -13,7 +13,7 @@ const CollumsGraph = ({ data, totals }: DataProps) => {
 
   useEffect(() => {
     if (data !== prevData) {
-      setSourceData(data);
+      setSourceData(data as any);
       setPrevData(data);
     } else if (totals) {
       setSourceData(totals);

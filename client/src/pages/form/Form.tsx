@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Header } from "@/components/Header";
 import { Link } from "react-router-dom";
+
 export const INITIAL_FORM_DATA = {
   responsable: "",
   titulo: "",
@@ -39,14 +40,14 @@ export function Form() {
         body: JSON.stringify(formData),
       });
       if (!response.ok) {
-        throw new Error("Error en la solicitud");
+        throw new Error("Error en la sol·licitud");
       }
-      setSuccessful("Enviado con Exito");
+      setSuccessful("Enviat amb èxit");
       console.log("Datos enviados correctamente");
       console.log(formData)
     } catch (error) {
-      setError("Error al enviar los datos");
-      console.error("Error al enviar los datos:", error);
+      setError("Error en l'enviament de les dades.");
+      console.error("Error:", error);
     }
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

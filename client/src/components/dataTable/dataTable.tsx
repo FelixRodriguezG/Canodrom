@@ -233,24 +233,28 @@ export function DataTable<TData extends EventsList, TValue>({
     className="form-select w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
   >
     <option value="">Sel·lecció </option>
-    <option value="all-events">Todos los eventos</option>
-    <option value="last-three-months">Últimos tres meses</option>
-    <option value="last-six-months">Últimos seis meses</option>
-    <option value="last-year">Último año</option>
+    <option value="all-events">Tots als esdeveniments</option>
+    <option value="last-three-months">Últims tres mesos</option>
+    <option value="last-six-months">Últims sis meses</option>
+    <option value="last-year">Últim any</option>
   </select>
   <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm md:text-base">
-    <input
-      type="date"
-      value={startDate}
-      onChange={(event) => setStartDate(event.target.value)}
-      className="form-select w-full md:w-1/3 md:max-w-sm mb-4 md:mb-0"
-    />
-    <input
-      type="date"
-      value={endDate}
-      onChange={(event) => setEndDate(event.target.value)}
-      className="form-select w-full md:w-1/3 bg- md:max-w-sm mb-4 md:mb-0"
-    />
+  <input
+  type="date"
+  value={startDate}
+  onChange={(event) => setStartDate(event.target.value)}
+  className="form-select w-full md:w-1/3 md:max-w-sm mb-4 md:mb-0"
+  lang="es"
+  onFocus={(event) => event.target.lang = "es"}
+/>
+<input
+  type="date"
+  value={endDate}
+  onChange={(event) => setEndDate(event.target.value)}
+  className="form-select w-full md:w-1/3 bg- md:max-w-sm mb-4 md:mb-0"
+  lang="es"
+  onFocus={(event) => event.target.lang = "es"}
+/>
     <button
       className="w-full md:w-1/3 border rounded-md bg-slate-100 hover:bg-[#46FCD6] text-sm md:text-base transition-colors"
       onClick={handleFilterByDateRange}

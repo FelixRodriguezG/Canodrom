@@ -76,10 +76,13 @@ if (loading) {
           collumData[0].Other,
         ],
         type: "bar",
-        color: "rgba(255, 177, 193, 1)",
-        showBackground: true,
-        backgroundStyle: {
-          color: "rgba(180, 180, 180, 0.2)",
+        itemStyle: {
+          borderRadius: 10, // Ajusta el valor para controlar el redondeo de las columnas
+          color: "rgba(255, 177, 193, 1)",
+          showBackground: true,
+          backgroundStyle: {
+            color: "rgba(180, 180, 180, 0.2)",
+          },
         },
       },
     ],
@@ -91,7 +94,7 @@ if (loading) {
         Com ens vas trobar?
       </CardTitle>
       <CardContent>
-        <ReactECharts option={option} />
+        <ReactECharts option={option}/>
       </CardContent>
     </Card>
   );

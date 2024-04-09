@@ -1,9 +1,18 @@
-/* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Query,
+  Res,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventsDto } from './dto/create-events.dto';
-import { Moment } from 'moment';
-
+import { Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('events')
 export class EventsController {
@@ -16,19 +25,19 @@ export class EventsController {
 
   @Get('/filter/all-events')
   async findAll(@Query('limit') limit: string) {
-      const events = await this.eventsService.findAll(limit);
+    const events = await this.eventsService.findAll(limit);
 
-      const moment = require('moment')
+    const moment = require('moment');
 
-      events.forEach((event) => {
-          event.startDate = moment(event.startDate).format('YYYY-MM-DD');
-      });
-
-      events.forEach((event) => {
-        event.endDate = moment(event.endDate).format('YYYY-MM-DD');
+    events.forEach((event) => {
+      event.startDate = moment(event.startDate).format('YYYY-MM-DD');
     });
 
-      return events;
+    events.forEach((event) => {
+      event.endDate = moment(event.endDate).format('YYYY-MM-DD');
+    });
+
+    return events;
   }
 
   @Get('/find/:title')
@@ -73,29 +82,43 @@ export class EventsController {
     return events;
   }
   @Get('/filter/by-date-range')
-  async filterByStartDate(
-    @Query('startDate') startDate: string,
-  ) {
+  async filterByStartDate(@Query('startDate') startDate: string) {
     const moment = require('moment');
-    // Formatear la cadena de fecha de inicio a YYYY-MM-DD
-    const formattedStartDate: Date = moment(startDate).format('YYYY-MM-DD');
-    
-    // Realizar la consulta para obtener los eventos que tengan la fecha de inicio igual o posterior a la fecha especificada
-    const events = await this.eventsService.filterByStartDate(formattedStartDate);
 
-    // Formatear las fechas de inicio de los eventos en el resultado
+    const formattedStartDate: Date = moment(startDate).format('YYYY-MM-DD');
+
+    const events =
+      await this.eventsService.filterByStartDate(formattedStartDate);
+
     events.forEach((event) => {
       event.startDate = moment(event.startDate).format('YYYY-MM-DD');
     });
 
     return events;
   }
+  @Get('download')
+  async downloadTable(@Res() res: Response): Promise<void> {
+    const buffer = await this.eventsService.downloadTable();
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+    res.setHeader('Content-Disposition', 'attachment; filename=tabla.xlsx');
+    res.send(buffer);
+  }
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadExcel(@UploadedFile() file, @Res() res: Response): Promise<void> {
+    try {
+      await this.eventsService.processExcel(file);
+      res
+        .status(200)
+        .send(
+          'Archivo Excel procesado correctamente y datos guardados en la base de datos.',
+        );
+    } catch (error) {
+      console.error('Error al procesar el archivo Excel:', error);
+      res.status(500).send('Error al procesar el archivo Excel.');
+    }
+  }
 }
-
-
-
-
-  
-
-
-

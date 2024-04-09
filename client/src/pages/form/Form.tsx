@@ -253,6 +253,86 @@ export function Form() {
                 className="bg-[#F5F5F5] mt-1"
               />
             </Label>
+            <Label className="flex flex-col mt-3">
+              Assabentat per Twitter
+              <Input
+                type="number"
+                name="heardThroughTwitter"
+                value={formData.heardThroughTwitter}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per Facebook
+              <Input
+                type="number"
+                name="heardThroughFacebook"
+                value={formData.heardThroughFacebook}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per Instagram
+              <Input
+                type="number"
+                name="heardThroughInstagram"
+                value={formData.heardThroughInstagram}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per Mastodon
+              <Input
+                type="number"
+                name="heardThroughMastodon"
+                value={formData.heardThroughMastodon}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per Newsletter
+              <Input
+                type="number"
+                name="heardThroughNewsletter"
+                value={formData.heardThroughNewsletter}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per Web
+              <Input
+                type="number"
+                name="heardThroughWeb"
+                value={formData.heardThroughWeb}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per Cartelleria
+              <Input
+                type="number"
+                name="heardThroughSigns"
+                value={formData.heardThroughSigns}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
+            <Label className="flex flex-col mt-3">
+            Assabentat per altres
+              <Input
+                type="number"
+                name="heardThroughOther"
+                value={formData.heardThroughOther}
+                onChange={handleChange}
+                className="bg-[#F5F5F5] mt-1"
+              />
+            </Label>
           </div>
           {error && <div style={{ color: "red" }}>{error}</div>}
           {Successful && <div style={{ color: "green" }}>{Successful}</div>}

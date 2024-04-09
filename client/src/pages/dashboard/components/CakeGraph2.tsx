@@ -1,36 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
-import { DataProps, EventsList } from "./interfaces/interfaces";
+import { DataProps, EventsList } from "../interfaces/interfaces";
 
+const CakeChart2 = ({ types, title }: DataProps) => {
+  console.log("types", types);
 
-
-const CakeChart3 = ({ themes, title }: DataProps) => {
-  
-  console.log("themes",themes)
- 
   const chartRef = useRef(null);
-  const [sourceData, setSourceData] = useState(themes);
-  const [prevData, setPrevData] = useState(themes);
+  const [sourceData, setSourceData] = useState(types);
+  const [prevData, setPrevData] = useState(types);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
-    if (themes !== prevData) {
-      setSourceData(themes as EventsList);
-      setPrevData(themes);
-    } else if (themes) {
-      setSourceData(themes);
+    if (types !== prevData) {
+      setSourceData(types as EventsList);
+      setPrevData(types);
+    } else if (types) {
+      setSourceData(types);
     }
-  }, [themes]);
+  }, [types]);
 
   useEffect(() => {
     if (sourceData && chartRef.current) {
-      const pieDataArray: { name: string; value: number; }[] = Object.entries(sourceData).map(([key, value]) => ({
+      const pieDataArray: { name: string; value: number }[] = Object.entries(
+        sourceData
+      ).map(([key, value]) => ({
         name: key,
         value: value,
       }));
-  
-      
-  
 
       const myChart = echarts.init(chartRef.current);
 
@@ -48,8 +44,9 @@ const CakeChart3 = ({ themes, title }: DataProps) => {
         },
         legend: {
           orient: "horizontal",
-          postition:"center",
+
           bottom: "16px",
+          position: "center",
         },
         series: [
           {
@@ -89,7 +86,7 @@ const CakeChart3 = ({ themes, title }: DataProps) => {
         myChart.dispose();
       };
     }
-    console.log(sourceData)
+    console.log(sourceData);
     setLoading(false);
   }, [sourceData]);
   if (loading) {
@@ -104,4 +101,4 @@ const CakeChart3 = ({ themes, title }: DataProps) => {
   );
 };
 
-export default CakeChart3;
+export default CakeChart2;

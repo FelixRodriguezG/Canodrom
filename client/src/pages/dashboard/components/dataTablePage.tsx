@@ -1,10 +1,8 @@
 import { Suspense, useEffect, useState } from "react";
-import { columns } from "../../components/dataTable/columns";
-import { DataTable } from "../../components/dataTable/dataTable";
-import { fetchActivities } from "../../api/Api";
-import { EventsList } from "./interfaces/interfaces";
-
-
+import { columns } from "../../../components/dataTable/columns";
+import { DataTable } from "../../../components/dataTable/dataTable";
+import { fetchActivities } from "../../../api/Api";
+import { EventsList } from "../interfaces/interfaces";
 
 const DataTablePageContent = ({
   onRowClick,
@@ -55,7 +53,7 @@ const DataTablePage = ({
   onRowClick,
   onTotalschange,
   initialTotals,
-  onTypeCountsChange, 
+  onTypeCountsChange,
   onThemeCountsChange,
 }: DataTablePageProps) => {
   return (
@@ -65,7 +63,7 @@ const DataTablePage = ({
         onTotalschange={onTotalschange}
         initialTotals={initialTotals}
         onTypeCountsChange={onTypeCountsChange} // Cambia handleTypeCountsChange a onTypeCountsChange
-        onThemeCountsChange={onThemeCountsChange} 
+        onThemeCountsChange={onThemeCountsChange}
       />
     </Suspense>
   );

@@ -77,7 +77,7 @@ if (loading) {
         ],
         type: "bar",
         itemStyle: {
-          borderRadius: 10, // Ajusta el valor para controlar el redondeo de las columnas
+          barBorderRadius: [10, 10, 0, 0], 
           color: "rgba(255, 177, 193, 1)",
           showBackground: true,
           backgroundStyle: {
@@ -86,6 +86,15 @@ if (loading) {
         },
       },
     ],
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+      formater: function (params) {
+        return params[0].name + "<br/>" + params[0].value;
+      },
+    }
   };
 
   return (

@@ -6,7 +6,7 @@ import axios from "axios";
 export const Header = () => {
   const [currentUser, setCurrentUser] = useContext(AuthContext);
   const navigate = useNavigate();
-  const fileInputRef = useRef(null); // Referencia al input de tipo file
+  const fileInputRef = useRef(null); 
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
@@ -25,12 +25,12 @@ export const Header = () => {
   const handleDownload = async () => {
     try {
       const response = await axios.get("http://localhost:3000/data/download", {
-        responseType: "blob", // Indica que la respuesta es un blob (archivo binario)
+        responseType: "blob", 
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "tabla.xlsx"); // Nombre del archivo a descargar
+      link.setAttribute("download", "tabla.xlsx"); 
       document.body.appendChild(link);
       link.click();
     } catch (error) {
@@ -60,24 +60,24 @@ export const Header = () => {
     <>
       <header className="bg-purple-700 p-5 flex w-full items-center justify-between">
         <img src="./Icon.svg" alt="logo" className="w-[240px]" />
-        <div className="flex gap-5 ">
-          <Link to="../form">
-            <img src="./fileSend.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+        <div className="flex gap-5">
+          <Link to="../form" className="flex items-center gap-1">
+            <img src="./formulari.svg" alt="logo" className="w-[15px] h-[12px] ml-6" />
+            <span className="font-semibold text-lg text-[#ffffff]">
               Formulari
             </span>
           </Link>
-          <Link to="../dashboard">
-            <img src="./dahboard1.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+          <Link to="../dashboard" className="flex items-center gap-1">
+            <img src="./dashboard.svg" alt="logo" className="w-[15px] h-[15px] ml-6" />
+            <span className="font-semibold text-lg text-[#f4f5f5]">
               Dashboard
             </span>
           </Link>
-          <button
+          <button className="flex items-center gap-1"
             onClick={() => fileInputRef.current && fileInputRef.current.click()}
           >
-            <img src="./upload.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+            <img src="/pujar.svg" alt="logo" className="w-[15px] h-[15px] ml-6" />
+            <span className="font-semibold text-lg text-[#ffffff]">
               Pujar Excel
             </span>
           </button>
@@ -89,15 +89,15 @@ export const Header = () => {
             onChange={handleUpload}
           />{" "}
           {/* Input oculto para subir archivos */}
-          <button onClick={handleDownload}>
-            <img src="./downloadl.svg" alt="logo" className="w-[40px] ml-6" />
-            <span className="font-semibold text-lg text-[#46FCD6]">
+          <button className="flex items-center gap-1" onClick={handleDownload}>
+            <img src="./descarregar.svg" alt="logo" className="w-[15px] h-[15px] ml-6" />
+            <span className="font-semibold text-lg text-[#ffffff]">
               Descarregar
             </span>
           </button>
         </div>
         <div>
-          <p className={`text-[#46FCD6] text-2xl `}>{"Benvingut/da " + data}</p>
+          <p className={`text-[#ffffff] text-2xl `}>{"Benvingut/da " + data}</p>
           <button type="button" onClick={handleLogOut} className="font-semibold">
             Tancar Sessió
           </button>

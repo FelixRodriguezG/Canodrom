@@ -34,7 +34,7 @@ export const Header = () => {
       document.body.appendChild(link);
       link.click();
     } catch (error) {
-      console.error("Error al descargar el archivo:", error);
+      console.error("Error amb la descarrega:", error);
     }
   };
 
@@ -52,7 +52,7 @@ export const Header = () => {
       alert("Archivo Excel subido correctamente.");
     } catch (error) {
       console.error("Error al subir el archivo Excel:", error);
-      alert("Error al subir el archivo Excel.");
+      alert("Error en pujar el fitxer Excel");
     }
   };
 

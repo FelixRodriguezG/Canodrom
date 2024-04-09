@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { DataProps, EventsList } from "../interfaces/interfaces";
+import { should } from "vitest";
 
 const CakeChart3 = ({ themes, title }: DataProps) => {
   console.log("themes", themes);
@@ -46,6 +47,7 @@ const CakeChart3 = ({ themes, title }: DataProps) => {
           orient: "horizontal",
           postition: "center",
           bottom: "16px",
+          show:false
         },
         series: [
           {
@@ -65,7 +67,7 @@ const CakeChart3 = ({ themes, title }: DataProps) => {
             emphasis: {
               label: {
                 show: true,
-                fontSize: 24,
+                fontSize: 22,
                 fontWeight: "bold",
               },
             },
@@ -75,6 +77,7 @@ const CakeChart3 = ({ themes, title }: DataProps) => {
             data: pieDataArray.map((data) => ({
               value: data.value,
               name: data.name,
+              
             })),
           },
         ],

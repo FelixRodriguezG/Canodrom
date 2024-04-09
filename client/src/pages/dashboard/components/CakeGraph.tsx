@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { DataProps, EventsList } from "../interfaces/interfaces";
+import { j } from "node_modules/vite/dist/node/types.d-FdqQ54oU";
 
 interface PieData {
   Homes: number | undefined;
@@ -50,8 +51,9 @@ const CakeChart = ({ data, totals, initialTotals, title }: DataProps) => {
         legend: {
           orient: "horizontal",
           left: "center",
-          bottom: "12px",
-          itemGap: 20,
+          justifyContent: "around",
+          bottom: "10px",
+          itemGap: 6,
         },
         series: [
           {
@@ -96,7 +98,7 @@ const CakeChart = ({ data, totals, initialTotals, title }: DataProps) => {
               },
               {
                 value: pieData.NoResponde,
-                name: "No responde",
+                name: "No respon",
                 itemStyle: { color: "#91CC75" },
               },
             ],

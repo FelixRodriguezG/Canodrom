@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import DataTablePage from "./dataTablePage";
+import DataTablePage from "./components/dataTablePage";
 import { Header } from "@/components/Header";
-import CakeChart from "./CakeGraph";
-import CollumsGraph from "./CollumsGraph";
+import CakeChart from "./components/CakeGraph";
+import CollumsGraph from "./components/CollumsGraph";
 import { fetchActivities } from "../../api/Api";
 import { EventsList } from "./interfaces/interfaces";
-import CakeChart3 from "./CakeGraph3";
-import CakeChart2 from "./CakeGraph2";
+import CakeChart3 from "./components/CakeGraph3";
+import CakeChart2 from "./components/CakeGraph2";
 
 const Dashboard = () => {
   const initialTotals: EventsList = {

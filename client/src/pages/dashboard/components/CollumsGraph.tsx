@@ -1,9 +1,8 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
-import { DataProps } from "./interfaces/interfaces";
-import { EventData } from "./interfaces/interfaces";
-
+import { DataProps } from "../interfaces/interfaces";
+import { EventData } from "../interfaces/interfaces";
 
 const CollumsGraph = ({ data, totals }: DataProps) => {
   const [collumData, setCollumData] = useState<EventData[]>([]);
@@ -37,9 +36,8 @@ const CollumsGraph = ({ data, totals }: DataProps) => {
       setLoading(false);
     }
   }, [sourceData]);
-  
-  
-if (loading) {
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -105,7 +103,7 @@ if (loading) {
         Com ens vas trobar?
       </CardTitle>
       <CardContent>
-        <ReactECharts option={option}/>
+        <ReactECharts option={option} />
       </CardContent>
     </Card>
   );

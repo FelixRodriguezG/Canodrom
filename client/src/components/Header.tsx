@@ -64,7 +64,7 @@ export const Header = () => {
           <Link to="../form">
             <img src="./fileSend.svg" alt="logo" className="w-[40px] ml-6" />
             <span className="font-semibold text-lg text-[#46FCD6]">
-              Formulario
+              Formulari
             </span>
           </Link>
           <Link to="../dashboard">
@@ -78,7 +78,7 @@ export const Header = () => {
           >
             <img src="./upload.svg" alt="logo" className="w-[40px] ml-6" />
             <span className="font-semibold text-lg text-[#46FCD6]">
-              Subir Excel
+              Pujar Excel
             </span>
           </button>
           <input
@@ -92,16 +92,16 @@ export const Header = () => {
           <button onClick={handleDownload}>
             <img src="./downloadl.svg" alt="logo" className="w-[40px] ml-6" />
             <span className="font-semibold text-lg text-[#46FCD6]">
-              Descargar
+              Descarregar
             </span>
           </button>
         </div>
         <div>
-          <p className={`text-white text-2xl `}>{"Bienvenido/a! " + data}</p>
-          <button type="button" onClick={handleLogOut}>
-            Log out
+          <p className={`text-[#46FCD6] text-2xl `}>{"Benvingut/da " + data}</p>
+          <button type="button" onClick={handleLogOut} className="font-semibold">
+            Tancar Sessió
           </button>
-        </div>
+        </div>  
       </header>
     </>
   );

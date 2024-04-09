@@ -65,7 +65,7 @@ const Dashboard = () => {
           <div className="flex gap-6 pb-6 items-">
             <CakeChart3 data={themeCounts} title="Temàtica"  themes={themeCounts}/>
             <CakeChart2 title="Tipus d'activitat" data={typeCounts} types={typeCounts}themes={themeCounts}/>
-            <CakeChart title="Assistencia'" data={selectedActivity} totals={totals} initialTotals={initialTotals} themes={themeCounts}/>
+            <CakeChart title="Assistencia" data={selectedActivity} totals={totals} initialTotals={initialTotals} themes={themeCounts}/>
             <CollumsGraph data={selectedActivity} totals={totals}/>
           </div>
           <div>

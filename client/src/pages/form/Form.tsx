@@ -4,9 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Header } from "@/components/Header";
 import { Link } from "react-router-dom";
-
 export const INITIAL_FORM_DATA = {
-  
   responsable: "",
   titulo: "",
   programa: "",
@@ -26,12 +24,10 @@ export const INITIAL_FORM_DATA = {
   streaming: "",
   notes: "",
 };
-
 export function Form() {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [error, setError] = useState("");
   const [Successful, setSuccessful] = useState("");
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -45,15 +41,14 @@ export function Form() {
       if (!response.ok) {
         throw new Error("Error en la solicitud");
       }
-      setSuccessful("Enviat amb èxit");
+      setSuccessful("Enviado con Exito");
       console.log("Datos enviados correctamente");
       console.log(formData)
     } catch (error) {
-      setError("Error en l'enviament de les dades");
+      setError("Error al enviar los datos");
       console.error("Error al enviar los datos:", error);
     }
   };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -72,12 +67,11 @@ export function Form() {
       onSubmit={handleSubmit}
       className="flex flex-col p-10 gap-5 rounded-md border border-slate-300 w-[55%] bg-white"
     >
-      <h1 className="text-4xl text-[#46FCD6] font-bold mb-5 text-center bg-purple-700 p-5 rounded-md">
+      <h1 className="text-4xl text-[#ffffff] font-bold mb-5 text-center bg-purple-700 p-5 rounded-md">
       Introdueix les dades de l'activitat
       </h1>
-      
       <div className="flex flex-wrap gap-3">
-        <Label className="flex flex-col mt-5">Data d'inici
+        <Label className="flex flex-col mt-5">Data inici
           <Input
             type="date"
             name="fechaInicio"
@@ -96,7 +90,6 @@ export function Form() {
           />
         </Label>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <Label className="flex flex-col mt-5">Streaming
           <Input
@@ -107,7 +100,6 @@ export function Form() {
             className="bg-[#F5F5F5] mt-1"
           />
         </Label>
-        
         <Label className="flex flex-col mt-5">
           Responsable
           <Input
@@ -119,9 +111,8 @@ export function Form() {
             required
           />
         </Label>
-
         <Label className="flex flex-col mt-5">
-          Titulo
+          Títol
           <Input
             type="text"
             name="titulo"
@@ -142,7 +133,7 @@ export function Form() {
               />
             </Label>
             <Label className="flex flex-col mt-3">
-              Temática
+              Temàtica
               <Input
                 type="text"
                 name="tematica"
@@ -151,9 +142,8 @@ export function Form() {
                 className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
-              Público
+              Públic
               <Input
                 type="text"
                 name="publico"
@@ -162,9 +152,8 @@ export function Form() {
                 className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
-              Organizador
+              Organitzador
               <Input
                 type="text"
                 name="organizador"
@@ -173,9 +162,8 @@ export function Form() {
                 className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
-              Tipus activitat
+              Tipus d'activitat
               <Input
                 type="text"
                 name="tipusActivitat"
@@ -184,7 +172,6 @@ export function Form() {
                 className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
               Nº SESSIONS
               <Input
@@ -195,9 +182,8 @@ export function Form() {
                 className="bg-[#F5F5F5]  mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
-              No Assistencia
+              No Assistència
               <Input
                 type="number"
                 name="noAssistencia"
@@ -206,7 +192,6 @@ export function Form() {
                 className="bg-[#F5F5F5] mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
               Nº Asistentes
               <Input
@@ -218,7 +203,7 @@ export function Form() {
               />
             </Label>
             <Label className="flex flex-col mt-3">
-              Nº Hombres
+              Nº Homes
               <Input
                 type="number"
                 name="numHombres"
@@ -228,7 +213,7 @@ export function Form() {
               />
             </Label>
             <Label className="flex flex-col mt-3">
-              Nº Mujeres
+              Nº Dones
               <Input
                 type="number"
                 name="numMujeres"
@@ -237,7 +222,6 @@ export function Form() {
                 className="bg-[#F5F5F5] mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
               Nº NN
               <Input
@@ -248,7 +232,6 @@ export function Form() {
                 className="bg-[#F5F5F5] mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
               Nº No-binari
               <Input
@@ -259,9 +242,8 @@ export function Form() {
                 className="bg-[#F5F5F5] mt-1"
               />
             </Label>
-
             <Label className="flex flex-col mt-3">
-              Infants acompanyants
+              Infants que els acompanyen
               <Input
                 type="number"
                 name="infantsAcompanados"
@@ -273,14 +255,12 @@ export function Form() {
           </div>
           {error && <div style={{ color: "red" }}>{error}</div>}
       {Successful && <div style={{ color: "green" }}>{Successful}</div>}
-      
       <Button type="submit" className="rounded-full bg-[#46FCD6] mt-5 transition duration-300">
         Enviar
       </Button>
-      
-      <div className="text-center bg-[#ae80ff] p-2 hover:bg-purple-700 hover:text-white rounded-full transition duration-300 ">
+      <div className="text-center bg-[#AE80FF] p-2 hover:bg-purple-700 hover:text-white rounded-full transition duration-300 ">
         <Link to="../../dashboard" className="text-center ">
-          Volver
+          Tornar
         </Link>
       </div>
     </form>
@@ -288,3 +268,4 @@ export function Form() {
 </div>
   );
 }
+

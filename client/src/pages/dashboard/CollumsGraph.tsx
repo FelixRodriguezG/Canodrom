@@ -78,7 +78,7 @@ if (loading) {
         type: "bar",
         itemStyle: {
           barBorderRadius: [10, 10, 0, 0], 
-          color: "rgb(84,197,212)",
+          color: "#5470C6",
           showBackground: true,
           backgroundStyle: {
             color: "rgba(180, 180, 180, 0.2)",
@@ -94,7 +94,7 @@ if (loading) {
         Com ens vas trobar?
       </CardTitle>
       <CardContent>
-        <ReactECharts option={option} />
+        <ReactECharts option={option}/>
       </CardContent>
     </Card>
   );

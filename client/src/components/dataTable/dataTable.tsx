@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import { EventsList } from "@/pages/dashboard/interfaces/interfaces";
-import { set } from "date-fns";
+
 
 export interface DataTableProps<TData extends EventsList, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -233,10 +233,10 @@ export function DataTable<TData extends EventsList, TValue>({
     className="form-select text-sm w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
   >
     <option value="">Sel·lecció </option>
-    <option value="all-events">Todos los eventos</option>
-    <option value="last-three-months">Últimos tres meses</option>
-    <option value="last-six-months">Últimos seis meses</option>
-    <option value="last-year">Último año</option>
+    <option value="all-events">Tots als esdeveniments</option>
+    <option value="last-three-months">Últims tres mesos</option>
+    <option value="last-six-months">Últims sis meses</option>
+    <option value="last-year">Últim any</option>
   </select>
   <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm ">
     <input

@@ -1,3 +1,4 @@
+import { test } from 'vitest'
 import { fetchActivities } from '../components/Api'
 import { mockData } from './Mocks'
 

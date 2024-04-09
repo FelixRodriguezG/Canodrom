@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, Dispatch } from 'react';
-import { ChildrenProps, User } from '../pages/login/types/types';
+import { ChildrenProps, User } from '../types/types';
 import { isAuthenticated } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
 

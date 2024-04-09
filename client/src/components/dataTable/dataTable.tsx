@@ -230,7 +230,7 @@ export function DataTable<TData extends EventsList, TValue>({
   <select
     value={filterType}
     onChange={handleFilterTypeChange}
-    className="form-select w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
+    className="form-select text-sm w-full md:w-1/4 border p-2 rounded-md md:max-w-sm mb-4 md:mb-0"
   >
     <option value="">Sel·lecció </option>
     <option value="all-events">Todos los eventos</option>
@@ -238,7 +238,7 @@ export function DataTable<TData extends EventsList, TValue>({
     <option value="last-six-months">Últimos seis meses</option>
     <option value="last-year">Último año</option>
   </select>
-  <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm md:text-base">
+  <div className="flex flex-col md:flex-row w-[700px]  gap-4 border p-2 rounded-md text-sm ">
     <input
       type="date"
       value={startDate}
@@ -252,7 +252,7 @@ export function DataTable<TData extends EventsList, TValue>({
       className="form-select w-full md:w-1/3 bg- md:max-w-sm mb-4 md:mb-0"
     />
     <button
-      className="w-full md:w-1/3 border rounded-md bg-slate-100 hover:bg-[#46FCD6] text-sm md:text-base transition-colors"
+      className="w-full md:w-1/3  border rounded-md bg-slate-100 hover:bg-[#46FCD6] text-sm  transition-colors"
       onClick={handleFilterByDateRange}
     >
       Filtre per data

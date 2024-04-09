@@ -19,7 +19,7 @@ const CollumsGraph = ({ data, totals }: DataProps) => {
       setSourceData(totals);
     }
   }, [data, totals]);
-console.log("sourceData",sourceData)
+
   useEffect(() => {
     if (sourceData) {
       setCollumData([
@@ -76,10 +76,13 @@ if (loading) {
           collumData[0].Other,
         ],
         type: "bar",
-        color: "rgba(255, 177, 193, 1)",
-        showBackground: true,
-        backgroundStyle: {
-          color: "rgba(180, 180, 180, 0.2)",
+        itemStyle: {
+          barBorderRadius: [10, 10, 0, 0], 
+          color: "rgb(84,197,212)",
+          showBackground: true,
+          backgroundStyle: {
+            color: "rgba(180, 180, 180, 0.2)",
+          },
         },
       },
     ],

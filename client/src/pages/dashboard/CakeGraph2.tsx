@@ -48,8 +48,9 @@ const CakeChart2 = ({ types, title }: DataProps) => {
         },
         legend: {
           orient: "horizontal",
-          right: "1%",
+          
           bottom: "16px",
+          position: "center",
         },
         series: [
           {
